@@ -10,7 +10,7 @@
 """
 
 # ── Déploiement ────────────────────────────────────────────────────────────────
-SITE = "https://courtier-site.netlify.app"   # ⚠ À CONFIRMER (preview Netlify provisoire)
+SITE = "https://courtier-site.netlify.app"   # URL de production Netlify
 
 # ── Identité ───────────────────────────────────────────────────────────────────
 BRAND     = "Nicolas Courtier"
