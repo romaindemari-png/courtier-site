@@ -1,0 +1,48 @@
+<main id="top">
+  <!-- ⚠ CONTENU PROVISOIRE À FAIRE VALIDER PAR LE CLIENT : promesse, "Le problème",
+       descriptifs de prestations, étapes "Comment ça se passe" et "Pour qui" sont des
+       formulations standard du métier — PAS les textes définitifs du cabinet. À relire. -->
+  <section class="phero"><div class="wrap">
+    <nav class="crumb rv" aria-label="Fil d'ariane">
+      <a href="/">Accueil</a><span class="sep" aria-hidden="true">/</span><a href="/#expertises">Expertises</a><span class="sep" aria-hidden="true">/</span><span class="cur">{{CRUMB}}</span>
+    </nav>
+    <h1 class="rv">{{H1}}</h1>
+    <p class="promise rv" style="transition-delay:.08s">{{PROMISE}}</p>
+  </div></section>
+
+  <section class="sec xsec"><div class="wrap">
+    <div class="xlead rv"><span class="ey">{{DOMAIN}}</span><h2>Le problème</h2><p>{{PROBLEM}}</p></div>
+  </div></section>
+
+  <section class="sec xsec"><div class="wrap">
+    <div class="xlead rv"><span class="ey">{{DOMAIN}}</span><h2>Ce que je fais</h2></div>
+    <div class="plist stg">
+{{PRESTATIONS}}
+    </div>
+  </div></section>
+
+  <section class="dark sec"><div class="wrap">
+    <div class="xlead rv"><span class="ey">{{DOMAIN}}</span><h2>Comment ça se passe</h2></div>
+    <!-- Étapes Diagnostic / Action / Suivi : structure provisoire, à valider par le client. -->
+    <div class="steps stg">
+      <div class="step"><div class="sn serif">01</div><h3>Diagnostic</h3><p>On fait le point sur votre situation, vos actifs et vos risques — un état des lieux clair, sans jargon.</p></div>
+      <div class="step"><div class="sn serif">02</div><h3>Action</h3><p>Je mets en place la protection ou la stratégie adaptée : dépôts, contrats, mise en conformité ou procédure.</p></div>
+      <div class="step"><div class="sn serif">03</div><h3>Suivi</h3><p>Un interlocuteur unique qui suit votre dossier dans le temps et anticipe les évolutions.</p></div>
+    </div>
+  </div></section>
+
+  <section class="sec xsec"><div class="wrap">
+    <div class="xlead rv"><span class="ey">{{DOMAIN}}</span><h2>Pour qui</h2><p>{{AUDIENCE}}</p></div>
+  </div></section>
+
+  <section class="dark sec xcta" id="contact"><div class="wrap">
+    <div class="rv"><span class="ey" style="display:block;margin-bottom:1.2rem">Contact</span><h2>Parlons de votre <span class="ac grad">projet</span>.</h2></div>
+    <div class="row rv" style="transition-delay:.08s">
+      <a class="cta solid" href="/#contact"><span>Écrire au cabinet</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <a class="tlink" href="/#contact">Prendre rendez-vous</a>
+    </div>
+    <div class="xother stg">
+{{OTHERS}}
+    </div>
+  </div></section>
+</main>
