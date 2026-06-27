@@ -145,6 +145,15 @@ MERCI_PAGE = {
     "body":    "Merci, votre message est arrivé. Je vous réponds dans les meilleurs délais — généralement sous 48 heures ouvrées.",
 }
 
+# ── Page /mentions-legales/ (réglementée — placeholders [À COMPLÉTER] dans le template) ──
+LEGAL_PAGE = {
+    "title":   "Mentions légales — Nicolas Courtier, avocat à Marseille",
+    "desc":    "Mentions légales du site de Nicolas Courtier, avocat au barreau de Marseille.",
+    "eyebrow": "Informations légales",
+    "h1":      "Mentions légales",
+    "intro":   "Informations légales relatives au présent site et à son éditeur, conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).",
+}
+
 # ── Étapes communes "Comment ça se passe" (provisoire, à valider) ───────────────
 STEPS = [
     ("Diagnostic", "On fait le point sur votre situation, vos actifs et vos risques — un état des lieux clair, sans jargon."),

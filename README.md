@@ -17,7 +17,7 @@ Produits par `build.py` et écrasés à chaque build (chacun porte un bandeau
 
 - `index.html`
 - `expertises/*/index.html`
-- `contact/index.html`, `merci/index.html`
+- `contact/index.html`, `merci/index.html`, `mentions-legales/index.html`
 - `assets/css/tokens.css`
 - `sitemap.xml`, `robots.txt`
 
@@ -147,3 +147,6 @@ concerné » est peuplé depuis `DOMAINS`. Tous les CTA du site pointent vers `/
 - JSON-LD + bloc coordonnées : téléphone, email, adresse, n° de toque/barreau en
   **« À CONFIRMER »** — aucune donnée inventée (ni avis, ni note, ni récompense).
 - Notification email des soumissions du formulaire à configurer côté Netlify.
+- **Mentions légales** (`/mentions-legales/`, en `noindex`) : page réglementée, tous les
+  champs `[À COMPLÉTER PAR LE CLIENT]` (adresse, SIREN, téléphone, email, toque, structure,
+  assurance RC, médiateur…) à renseigner avant mise en ligne, puis repasser en `index`.

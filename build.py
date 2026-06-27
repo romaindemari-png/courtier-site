@@ -37,6 +37,7 @@ home_t    = rd("_src/template/home.html")
 expt_t    = rd("_src/template/expertise.html")
 contact_t = rd("_src/template/contact.html")
 merci_t   = rd("_src/template/merci.html")
+legal_t   = rd("_src/template/mentions-legales.html")
 
 # ─────────────────────────── Fragments réutilisables ───────────────────────────
 def picture(img):
@@ -203,6 +204,15 @@ def merci_body():
         "{{BODY}}": esc(D.MERCI_PAGE["body"]),
     })
 
+def legal_body():  # valeurs connues injectées ; le reste = [À COMPLÉTER] dans le template
+    return render(legal_t, {
+        "{{EYEBROW}}": esc(D.LEGAL_PAGE["eyebrow"]),
+        "{{H1}}": esc(D.LEGAL_PAGE["h1"]),
+        "{{INTRO}}": esc(D.LEGAL_PAGE["intro"]),
+        "{{BRAND}}": esc(D.BRAND),
+        "{{LOCATION}}": esc(D.LOCATION),
+    })
+
 # ─────────────────────────── Corps expertise ───────────────────────────────────
 def steps_html():
     return "\n".join('      <div class="step"><div class="sn serif">%02d</div><h3>%s</h3><p>%s</p></div>'
@@ -241,6 +251,9 @@ def build():
        page(D.CONTACT_PAGE["title"], D.CONTACT_PAGE["desc"], D.SITE + "/contact/", "", contact_body(), "/"))
     wr("merci/index.html",
        page(D.MERCI_PAGE["title"], D.MERCI_PAGE["desc"], D.SITE + "/merci/", "", merci_body(), "/", robots="noindex,follow"))
+    # Mentions légales — accessible via le footer ; noindex tant que des [À COMPLÉTER] subsistent
+    wr("mentions-legales/index.html",
+       page(D.LEGAL_PAGE["title"], D.LEGAL_PAGE["desc"], D.SITE + "/mentions-legales/", "", legal_body(), "/", robots="noindex,follow"))
 
     urls = ([(D.SITE + "/", "1.0")]
             + [("%s/expertises/%s/" % (D.SITE, d["slug"]), "0.8") for d in D.DOMAINS]
@@ -258,7 +271,7 @@ def build():
     print("  - index.html  + assets/css/tokens.css")
     for d in D.DOMAINS:
         print("  - expertises/%s/index.html" % d["slug"])
-    print("  - contact/index.html, merci/index.html")
+    print("  - contact/index.html, merci/index.html, mentions-legales/index.html")
     print("  - sitemap.xml, robots.txt")
 
 if __name__ == "__main__":
