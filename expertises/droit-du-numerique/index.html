@@ -19,6 +19,7 @@
 <link rel="preload" href="/assets/fonts/pst-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/david-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/david-extralight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/main.css">
 <script type="application/ld+json">
 {
@@ -28,9 +29,15 @@
   "serviceType": "Droit du numérique",
   "description": "Sécuriser vos contrats et vos outils numériques, de l'idée à l'exploitation.",
   "url": "https://courtier-site.netlify.app/expertises/droit-du-numerique/",
-  "areaServed": { "@type": "City", "name": "Marseille" },
+  "areaServed": {
+    "@type": "City",
+    "name": "Marseille"
+  },
   "provider": {
-    "@type": ["LegalService", "Attorney"],
+    "@type": [
+      "LegalService",
+      "Attorney"
+    ],
     "name": "Nicolas Courtier — Avocat",
     "url": "https://courtier-site.netlify.app/"
   }
@@ -88,7 +95,7 @@
 
   <section class="dark sec"><div class="wrap">
     <div class="xlead rv"><span class="ey">Droit du numérique</span><h2>Comment ça se passe</h2></div>
-    <!-- Étapes Diagnostic / Action / Suivi : structure provisoire, à valider par le client. -->
+    <!-- Étapes (data.py → STEPS) : structure provisoire, à valider par le client. -->
     <div class="steps stg">
       <div class="step"><div class="sn serif">01</div><h3>Diagnostic</h3><p>On fait le point sur votre situation, vos actifs et vos risques — un état des lieux clair, sans jargon.</p></div>
       <div class="step"><div class="sn serif">02</div><h3>Action</h3><p>Je mets en place la protection ou la stratégie adaptée : dépôts, contrats, mise en conformité ou procédure.</p></div>

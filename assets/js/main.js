@@ -1,13 +1,11 @@
-/* Nicolas Courtier — JS partagé (toutes pages).
+/* Gabarit — JS partagé (toutes pages).
    Chaque bloc est défensif : il ne s'exécute que si ses éléments existent,
    pour qu'un seul fichier serve l'accueil ET les pages d'expertise. */
 (function () {
-  var P = {
-    forme: "/assets/img/forme.webp",
-    prix: "/assets/img/prix.webp",
-    "frontière": "/assets/img/approche-gratte-ciels.webp",
-    contour: "/assets/img/contour.webp"
-  };
+  // Données hero injectées par build.py (window.HERO = { words:[…], images:{…} }).
+  // Le gabarit ne contient aucune donnée client : voir _src/data.py.
+  var HERO = window.HERO || {};
+  var P = HERO.images || {};
   var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
   /* Hero — mot qui tourne en cut sec + photo au survol (accueil) */
@@ -15,8 +13,8 @@
       box = document.getElementById('hphotoBox'),
       pim = document.getElementById('hphoto'),
       wcur = document.getElementById('wcur');
-  if (rot && wcur) {
-    var words = ["forme", "prix", "frontière", "contour"], idx = 0, paused = false;
+  if (rot && wcur && HERO.words && HERO.words.length) {
+    var words = HERO.words, idx = 0, paused = false;
     setInterval(function () { if (paused) return; idx = (idx + 1) % words.length; wcur.textContent = words[idx]; }, 2000);
     if (canHover) {
       rot.addEventListener('mouseenter', function () { paused = true; if (pim) pim.src = P[words[idx]]; if (box) box.classList.add('show'); });

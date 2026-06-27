@@ -1,10 +1,11 @@
+{{HERO_CONFIG}}
 <main id="top">
   <section class="hero"><div class="wrap">
     <div class="h-right">
-      <p class="h-base">Trente-cinq ans de barreau au service de votre patrimoine immatériel — marques, créations, données, contrats.</p>
+      <p class="h-base">{{HERO_BASELINE}}</p>
       <div class="h-photo" id="hphotoBox"><img id="hphoto" alt=""></div>
     </div>
-    <h1 class="h-title"><span class="l">Protéger ce qui</span><span class="l">n'a pas de <span class="rot" id="rot"><span class="grad" id="wcur">forme</span></span>.</span></h1>
+    <h1 class="h-title"><span class="l">{{HERO_TITLE_BEFORE}}</span><span class="l">{{HERO_TITLE_AFTER_PREFIX}}<span class="rot" id="rot"><span class="grad" id="wcur">{{HERO_FIRST_WORD}}</span></span>{{HERO_TITLE_AFTER_SUFFIX}}</span></h1>
     <div class="h-scroll" aria-hidden="true">
       <svg class="ring" viewBox="0 0 120 120"><defs><path id="cp" d="M60 16 a44 44 0 1 1 -0.1 0"/></defs><text><textPath href="#cp" startOffset="0">défiler · le cabinet · défiler · le cabinet · </textPath></text></svg>
       <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 4v15M6 13l6 6 6-6"/></svg></span>
@@ -13,58 +14,49 @@
 
   <section class="dark sec cab" id="cabinet"><div class="wrap">
     <div class="grid">
-      <div class="pf rv"><picture><source srcset="/assets/img/portrait-nicolas-courtier.webp" type="image/webp"><img src="/assets/img/portrait-nicolas-courtier.jpg" alt="Nicolas Courtier, avocat au barreau de Marseille" width="803" height="1000" loading="lazy"></picture></div>
+      <div class="pf rv">{{PORTRAIT}}</div>
       <div class="rv" style="transition-delay:.1s">
-        <span class="ey">Le cabinet</span>
-        <h2>Défendre l'invisible, depuis <span class="ac">1991</span>.</h2>
-        <p class="body">Avocat au barreau de Marseille, DPO externalisé et maître de conférences à Aix-Marseille. Un seul interlocuteur pour la propriété intellectuelle, les données et le droit du numérique — du conseil au contentieux.</p>
+        <span class="ey">{{CABINET_EYEBROW}}</span>
+        <h2>{{CABINET_TITLE}}</h2>
+        <p class="body">{{CABINET_BODY}}</p>
         <div class="stats stg">
-          <div><div class="n serif">35</div><div class="k">ans de barreau</div></div>
-          <div><div class="n serif">3</div><div class="k">métiers réunis</div></div>
-          <div><div class="n serif">1</div><div class="k">interlocuteur</div></div>
+{{CABINET_STATS}}
         </div>
       </div>
     </div>
   </div></section>
 
   <section class="sec" id="expertises"><div class="wrap">
-    <div class="shead rv"><span class="ey">Expertises</span><h2>Ce que je défends.</h2></div>
+    <div class="shead rv"><span class="ey">{{EXPERTISES_EYEBROW}}</span><h2>{{EXPERTISES_TITLE}}</h2></div>
     <div class="cards stg">
-      <a class="card" href="/expertises/propriete-intellectuelle/" data-img="forme"><span class="num serif">01</span><div class="mid"><span class="lab">Propriété intellectuelle</span><h3>Marques &amp; créations</h3><p>Droit d'auteur, dessins &amp; modèles, noms de domaine, contrefaçon.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><circle cx="20" cy="20" r="13"/><path d="M20 12.5v15M13.5 16.25l13 7.5M26.5 16.25l-13 7.5"/></svg></span></a>
-      <a class="card" href="/expertises/droit-du-numerique/" data-img="contour"><span class="num serif">02</span><div class="mid"><span class="lab">Droit du numérique</span><h3>Contrats &amp; plateformes</h3><p>Contrats IT, NIS2, intelligence artificielle, IA Act.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M15 13l-7 7 7 7M25 13l7 7-7 7M22 11l-4 18"/></svg></span></a>
-      <a class="card" href="/expertises/donnees-personnelles/" data-img="prix"><span class="num serif">03</span><div class="mid"><span class="lab">Données personnelles</span><h3>RGPD &amp; mission DPO</h3><p>Mise en conformité, transferts, contrôles et sanctions CNIL.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="20" cy="12" rx="11" ry="4"/><path d="M9 12v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8"/><path d="M9 20c0 2.2 4.9 4 11 4s11-1.8 11-4"/></svg></span></a>
-      <a class="card" href="/expertises/contentieux/" data-img="frontière"><span class="num serif">04</span><div class="mid"><span class="lab">Contentieux</span><h3>Défense &amp; litige</h3><p>Concurrence déloyale, e-réputation, devant toutes juridictions.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 9v22M12 31h16M11 15l18-5"/><path d="M11 15l-4 8h8l-4-8zM29 10l-4 8h8l-4-8z"/></svg></span></a>
+{{CARDS}}
     </div>
     <div class="trail" id="trail"><img id="trailimg" alt=""></div>
   </div></section>
 
   <section class="dark sec appr" id="approche"><div class="wrap">
-    <div class="shead rv"><span class="ey">L'approche</span><h2>Le droit et la technique, ensemble.</h2></div>
+    <div class="shead rv"><span class="ey">{{APPROCHE_EYEBROW}}</span><h2>{{APPROCHE_TITLE}}</h2></div>
     <div class="grid">
       <div class="acc rv">
-        <div class="acc-item open"><div class="acc-head"><h3>Là où les autres s'arrêtent</h3><span class="pm"></span></div><div class="acc-body"><p>Je relie votre système d'information au cadre juridique — pas l'un sans l'autre. La technique et le droit avancent ensemble, jamais en silos.</p></div></div>
-        <div class="acc-item"><div class="acc-head"><h3>La conformité se pilote</h3><span class="pm"></span></div><div class="acc-body"><p>Du RGPD à l'IA Act, un copilotage continu et lisible — jamais un audit qui dort sur une étagère. La conformité devient un réflexe, pas une contrainte.</p></div></div>
-        <div class="acc-item"><div class="acc-head"><h3>Une relation qui dure</h3><span class="pm"></span></div><div class="acc-body"><p>Un interlocuteur unique, qui connaît votre dossier et le suit dans le temps. Pas de relais, pas de perte d'information.</p></div></div>
+{{APPROCHE_ITEMS}}
       </div>
-      <div class="vis rv" style="transition-delay:.12s"><picture><source srcset="/assets/img/approche-gratte-ciels.webp" type="image/webp"><img src="/assets/img/approche-gratte-ciels.jpg" alt="Tours d'un quartier d'affaires, traitées en duotone" width="750" height="1000" loading="lazy"></picture></div>
+      <div class="vis rv" style="transition-delay:.12s">{{APPROCHE_IMG}}</div>
     </div>
   </div></section>
 
   <section class="manif"><div class="wrap">
-    <blockquote class="rv">La conformité ne se décrète pas, elle se <span class="ac grad">pilote</span>.</blockquote>
-    <p class="sup rv" style="transition-delay:.1s">Entre votre système d'information et le cadre juridique, j'assure le copilotage — sans jargon, sans zone grise.</p>
+    <blockquote class="rv">{{MANIFESTO_QUOTE}}</blockquote>
+    <p class="sup rv" style="transition-delay:.1s">{{MANIFESTO_SUP}}</p>
   </div></section>
 
   <section class="dark sec contact" id="contact"><div class="wrap">
-    <div class="rv"><span class="ey" style="display:block;margin-bottom:1.2rem">Contact</span><h2>Parlons de votre <span class="ac grad">projet</span>.</h2></div>
+    <div class="rv"><span class="ey" style="display:block;margin-bottom:1.2rem">{{CONTACT_EYEBROW}}</span><h2>{{CONTACT_TITLE}}</h2></div>
     <div class="row rv" style="transition-delay:.1s">
-      <a class="cta solid" href="#"><span>Écrire au cabinet</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
-      <a class="tlink" href="#">Prendre rendez-vous</a>
+      <a class="cta solid" href="#"><span>{{CONTACT_CTA}}</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <a class="tlink" href="#">{{CONTACT_SECONDARY}}</a>
     </div>
     <div class="meta stg">
-      <div><div class="k">Cabinet</div><p>2 rue Odette Jasse<br>13015 Marseille</p></div>
-      <div><div class="k">Écrire</div><p>contact@courtier-avocats.com</p></div>
-      <div><div class="k">Barreau</div><p>Marseille — depuis 1991</p></div>
+{{CONTACT_META}}
     </div>
   </div></section>
 </main>

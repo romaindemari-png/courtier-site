@@ -1,7 +1,7 @@
 @font-face{font-family:'PST';src:url(/assets/fonts/pst-regular.woff2) format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'David';src:url(/assets/fonts/david-light.woff2) format('woff2');font-weight:300;font-display:swap}
 @font-face{font-family:'David';src:url(/assets/fonts/david-extralight.woff2) format('woff2');font-weight:200;font-display:swap}
-:root{--cream:#ECE7DB;--cream2:#E4DCCC;--ink:#16140F;--dark:#1A1815;--onDark:#EDE8DD;--accent:#2E2BF5;--grad:linear-gradient(120deg,#2E2BF5,#7B4DFF);--muted:#8C8472;--mutedDk:rgba(237,232,221,.55);--line:rgba(22,20,15,.18);--lineDk:rgba(237,232,221,.16)}
+/* Tokens couleur (:root) → générés dans assets/css/tokens.css depuis _src/data.py (COLORS). */
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{font-family:'David',sans-serif;font-weight:200;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}

@@ -19,6 +19,7 @@
 <link rel="preload" href="/assets/fonts/pst-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/david-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/david-extralight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/main.css">
 <!-- JSON-LD (accueil) — données factuelles uniquement, aucun avis/note/récompense (YMYL).
      À CONFIRMER PAR LE CLIENT, puis réintégrer dans le bloc ci-dessous :
@@ -31,20 +32,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["LegalService", "Attorney"],
+  "@type": [
+    "LegalService",
+    "Attorney"
+  ],
   "@id": "https://courtier-site.netlify.app/#cabinet",
   "name": "Nicolas Courtier — Avocat",
   "description": "Avocat au barreau de Marseille depuis 1991. Propriété intellectuelle, droit du numérique, données personnelles (RGPD) et contentieux — du conseil à la défense.",
   "url": "https://courtier-site.netlify.app/",
   "image": "https://courtier-site.netlify.app/assets/img/portrait-nicolas-courtier.jpg",
-  "areaServed": { "@type": "City", "name": "Marseille" },
+  "areaServed": {
+    "@type": "City",
+    "name": "Marseille"
+  },
   "foundingDate": "1991",
-  "knowsAbout": ["Propriété intellectuelle", "Droit du numérique", "Données personnelles et RGPD", "Contentieux"],
+  "knowsAbout": [
+    "Propriété intellectuelle",
+    "Droit du numérique",
+    "Données personnelles et RGPD",
+    "Contentieux"
+  ],
   "founder": {
     "@type": "Person",
     "name": "Nicolas Courtier",
     "jobTitle": "Avocat",
-    "memberOf": { "@type": "Organization", "name": "Barreau de Marseille" }
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Barreau de Marseille"
+    }
   }
 }
 </script>
@@ -71,6 +86,7 @@
   <a href="#contact" onclick="document.getElementById('mm').classList.remove('open')">Contact</a>
 </nav>
 
+<script>window.HERO={words:["forme", "prix", "frontière", "contour"],images:{"forme": "/assets/img/forme.webp", "prix": "/assets/img/prix.webp", "frontière": "/assets/img/approche-gratte-ciels.webp", "contour": "/assets/img/contour.webp"}};</script>
 <main id="top">
   <section class="hero"><div class="wrap">
     <div class="h-right">
