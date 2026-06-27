@@ -53,7 +53,8 @@ NAV = [
     {"href": "#expertises", "label": "Expertises"},
     {"href": "#approche",   "label": "L'approche"},
 ]
-NAV_CTA = {"href": "#contact", "label": "Prendre rendez-vous"}
+NAV_CONTACT = {"href": "/contact/", "label": "Contact"}              # menu mobile + footer
+NAV_CTA     = {"href": "/contact/", "label": "Prendre rendez-vous"}  # CTA header → page /contact/
 
 # ── SEO accueil ─────────────────────────────────────────────────────────────────
 HOME_TITLE = "Nicolas Courtier — Avocat en PI & numérique à Marseille"
@@ -124,6 +125,24 @@ CONTACT_SECTION = {
         ("Écrire", "contact@courtier-avocats.com"),
         ("Barreau", "Marseille — depuis 1991"),
     ],
+}
+
+# ── Page /contact/ (formulaire Netlify Forms) ──────────────────────────────────
+CONTACT_PAGE = {
+    "title":   "Contact — Nicolas Courtier, avocat à Marseille",
+    "desc":    "Contactez le cabinet de Nicolas Courtier, avocat à Marseille : propriété intellectuelle, droit du numérique, RGPD, contentieux. Décrivez votre projet en quelques lignes.",
+    "eyebrow": "Contact",
+    "h1_html": "Parlons de votre <span class=\"ac grad\">projet</span>.",
+    "intro":   "Décrivez votre besoin en quelques lignes — je vous réponds rapidement. Les champs suivis d'un astérisque sont obligatoires.",
+}
+
+# ── Page /merci/ (confirmation d'envoi) ─────────────────────────────────────────
+MERCI_PAGE = {
+    "title":   "Message envoyé — Nicolas Courtier, avocat à Marseille",
+    "desc":    "Votre message a bien été transmis au cabinet de Nicolas Courtier, avocat à Marseille.",
+    "eyebrow": "Contact",
+    "h1_html": "Message bien <span class=\"ac grad\">envoyé</span>.",
+    "body":    "Merci, votre message est arrivé. Je vous réponds dans les meilleurs délais — généralement sous 48 heures ouvrées.",
 }
 
 # ── Étapes communes "Comment ça se passe" (provisoire, à valider) ───────────────

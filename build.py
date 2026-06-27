@@ -30,11 +30,13 @@ def render(tpl, repl):
         tpl = tpl.replace(k, v)
     return tpl
 
-base    = rd("_src/template/base.html")
-header  = rd("_src/partials/header.html")
-footer  = rd("_src/partials/footer.html")
-home_t  = rd("_src/template/home.html")
-expt_t  = rd("_src/template/expertise.html")
+base      = rd("_src/template/base.html")
+header    = rd("_src/partials/header.html")
+footer    = rd("_src/partials/footer.html")
+home_t    = rd("_src/template/home.html")
+expt_t    = rd("_src/template/expertise.html")
+contact_t = rd("_src/template/contact.html")
+merci_t   = rd("_src/template/merci.html")
 
 # ─────────────────────────── Fragments réutilisables ───────────────────────────
 def picture(img):
@@ -51,19 +53,23 @@ def tokens_css():
     return "/* GÉNÉRÉ PAR build.py depuis _src/data.py (COLORS) — NE PAS ÉDITER À LA MAIN */\n:root{%s}\n" % root
 
 # ─────────────────────────── Chrome (header / footer) ──────────────────────────
+def _href(prefix, h):
+    # Lien absolu (page, ex. /contact/) tel quel ; ancre (#cabinet) préfixée selon la page.
+    return h if h.startswith("/") else prefix + h
+
 def _nav(prefix, items, cls=""):
     a = ' class="%s"' % cls if cls else ""
-    return "".join('<a%s href="%s%s">%s</a>' % (a, prefix, n["href"], esc(n["label"])) for n in items)
+    return "".join('<a%s href="%s">%s</a>' % (a, _href(prefix, n["href"]), esc(n["label"])) for n in items)
 
 def chrome(prefix):
-    mm_items = D.NAV + [{"href": "#contact", "label": "Contact"}]
+    mm_items = D.NAV + [D.NAV_CONTACT]
     mm = "\n  ".join(
-        '<a href="%s%s" onclick="document.getElementById(\'mm\').classList.remove(\'open\')">%s</a>'
-        % (prefix, n["href"], esc(n["label"])) for n in mm_items)
+        '<a href="%s" onclick="document.getElementById(\'mm\').classList.remove(\'open\')">%s</a>'
+        % (_href(prefix, n["href"]), esc(n["label"])) for n in mm_items)
     h = render(header, {
         "{{HOME}}": prefix, "{{BRAND}}": esc(D.BRAND), "{{MONOGRAM}}": esc(D.MONOGRAM),
         "{{NAV_LINKS}}": _nav(prefix, D.NAV, "lnk"),
-        "{{NAV_CTA_HREF}}": prefix + D.NAV_CTA["href"], "{{NAV_CTA_LABEL}}": esc(D.NAV_CTA["label"]),
+        "{{NAV_CTA_HREF}}": _href(prefix, D.NAV_CTA["href"]), "{{NAV_CTA_LABEL}}": esc(D.NAV_CTA["label"]),
         "{{MM_LINKS}}": mm,
     })
     f = render(footer, {
@@ -73,11 +79,11 @@ def chrome(prefix):
     })
     return h, f
 
-def page(title, desc, canonical, jsonld, body, prefix):
+def page(title, desc, canonical, jsonld, body, prefix, robots="index,follow"):
     h, f = chrome(prefix)
     out = render(base, {
         "{{TITLE}}": att(title), "{{OG_TITLE}}": att(title), "{{DESC}}": att(desc),
-        "{{SITE_NAME}}": att(D.SITE_NAME), "{{CANONICAL}}": att(canonical),
+        "{{SITE_NAME}}": att(D.SITE_NAME), "{{CANONICAL}}": att(canonical), "{{ROBOTS}}": robots,
         "{{OG_IMAGE}}": att(OG_IMAGE), "{{JSONLD}}": jsonld,
         "{{HEADER}}": h, "{{BODY}}": body, "{{FOOTER}}": f,
     })
@@ -126,6 +132,10 @@ def service_jsonld(d):
     })
 
 # ─────────────────────────── Corps accueil ─────────────────────────────────────
+def meta_html():  # coordonnées (accueil + page contact) — valeurs brutes (peuvent contenir <br>)
+    return "\n".join('      <div><div class="k">%s</div><p>%s</p></div>' % (esc(k), v)
+                     for k, v in D.CONTACT_SECTION["meta"])
+
 def home_body():
     config = "<script>window.HERO={words:%s,images:%s};</script>" % (
         json.dumps(D.HERO_WORDS, ensure_ascii=False), json.dumps(D.HERO_IMAGES, ensure_ascii=False))
@@ -144,8 +154,6 @@ def home_body():
         items.append('        <div class="acc-item%s"><div class="acc-head"><h3>%s</h3>'
                      '<span class="pm"></span></div><div class="acc-body"><p>%s</p></div></div>'
                      % (" open" if j == 0 else "", esc(h3), esc(body)))
-    meta = "\n".join('      <div><div class="k">%s</div><p>%s</p></div>' % (esc(k), v)
-                     for k, v in D.CONTACT_SECTION["meta"])
     return render(home_t, {
         "{{HERO_CONFIG}}": config,
         "{{HERO_BASELINE}}": esc(D.HERO["baseline"]),
@@ -171,7 +179,28 @@ def home_body():
         "{{CONTACT_TITLE}}": D.CONTACT_SECTION["title_html"],
         "{{CONTACT_CTA}}": esc(D.CONTACT_SECTION["cta_label"]),
         "{{CONTACT_SECONDARY}}": esc(D.CONTACT_SECTION["secondary_label"]),
-        "{{CONTACT_META}}": meta,
+        "{{CONTACT_META}}": meta_html(),
+    })
+
+# ─────────────────────────── Corps contact / merci ─────────────────────────────
+def contact_options():  # <select> peuplé depuis DOMAINS
+    return "\n".join('            <option value="%s">%s</option>' % (att(d["domain"]), esc(d["domain"]))
+                     for d in D.DOMAINS)
+
+def contact_body():
+    return render(contact_t, {
+        "{{EYEBROW}}": esc(D.CONTACT_PAGE["eyebrow"]),
+        "{{H1}}": D.CONTACT_PAGE["h1_html"],
+        "{{INTRO}}": esc(D.CONTACT_PAGE["intro"]),
+        "{{SUJET_OPTIONS}}": contact_options(),
+        "{{CONTACT_META}}": meta_html(),
+    })
+
+def merci_body():
+    return render(merci_t, {
+        "{{EYEBROW}}": esc(D.MERCI_PAGE["eyebrow"]),
+        "{{H1}}": D.MERCI_PAGE["h1_html"],
+        "{{BODY}}": esc(D.MERCI_PAGE["body"]),
     })
 
 # ─────────────────────────── Corps expertise ───────────────────────────────────
@@ -207,7 +236,15 @@ def build():
         wr("expertises/%s/index.html" % d["slug"],
            page(d["title"], d["desc"], canonical, service_jsonld(d), expertise_body(d), "/"))
 
-    urls = [(D.SITE + "/", "1.0")] + [("%s/expertises/%s/" % (D.SITE, d["slug"]), "0.8") for d in D.DOMAINS]
+    # Page contact (formulaire Netlify) + confirmation (noindex, hors sitemap)
+    wr("contact/index.html",
+       page(D.CONTACT_PAGE["title"], D.CONTACT_PAGE["desc"], D.SITE + "/contact/", "", contact_body(), "/"))
+    wr("merci/index.html",
+       page(D.MERCI_PAGE["title"], D.MERCI_PAGE["desc"], D.SITE + "/merci/", "", merci_body(), "/", robots="noindex,follow"))
+
+    urls = ([(D.SITE + "/", "1.0")]
+            + [("%s/expertises/%s/" % (D.SITE, d["slug"]), "0.8") for d in D.DOMAINS]
+            + [(D.SITE + "/contact/", "0.7")])
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, prio in urls:
@@ -217,10 +254,11 @@ def build():
     wr("sitemap.xml", "\n".join(sm))
     wr("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % D.SITE)
 
-    print("Build OK — %d page(s) d'expertise :" % len(D.DOMAINS))
+    print("Build OK — %d page(s) d'expertise + contact/merci :" % len(D.DOMAINS))
     print("  - index.html  + assets/css/tokens.css")
     for d in D.DOMAINS:
         print("  - expertises/%s/index.html" % d["slug"])
+    print("  - contact/index.html, merci/index.html")
     print("  - sitemap.xml, robots.txt")
 
 if __name__ == "__main__":

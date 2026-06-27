@@ -17,6 +17,7 @@ Produits par `build.py` et écrasés à chaque build (chacun porte un bandeau
 
 - `index.html`
 - `expertises/*/index.html`
+- `contact/index.html`, `merci/index.html`
 - `assets/css/tokens.css`
 - `sitemap.xml`, `robots.txt`
 
@@ -127,10 +128,22 @@ On commite donc le HTML généré avec les sources. `build.py` tourne **en local
    dans `assets/img/`.
 3. `python3 build.py`. Le gabarit reste inchangé.
 
+## Formulaire de contact (Netlify Forms)
+
+La page `/contact/` (template `_src/template/contact.html`) contient un formulaire
+**Netlify Forms** : `data-netlify="true"`, champ caché `form-name`, honeypot `bot-field`,
+et `action="/merci/"` (page de confirmation, en `noindex`). Le `<select>` « Domaine
+concerné » est peuplé depuis `DOMAINS`. Tous les CTA du site pointent vers `/contact/`.
+
+> ⚠️ **Netlify Forms ne fonctionne qu'une fois déployé sur Netlify** (détection du
+> formulaire à la mise en ligne) — **pas testable en local**. Après branchement Netlify :
+> vérifier la réception dans *Site settings → Forms*, et configurer une notification
+> email (les soumissions n'arrivent nulle part tant que ce n'est pas fait).
+
 ## À valider par le client
 
-- Textes des pages d'expertise (problème, prestations, étapes, pour qui) : **standard
-  métier provisoire**, à relire.
-- JSON-LD : téléphone, email, adresse, n° de toque/barreau en **commentaire
-  « À CONFIRMER »** — aucune donnée inventée (ni avis, ni note, ni récompense).
-- CTA contact (`href="#"`) : à brancher à l'étape Netlify Forms.
+- Textes des pages d'expertise + de la page contact (problème, prestations, étapes,
+  pour qui, intro) : **standard métier provisoire**, à relire.
+- JSON-LD + bloc coordonnées : téléphone, email, adresse, n° de toque/barreau en
+  **« À CONFIRMER »** — aucune donnée inventée (ni avis, ni note, ni récompense).
+- Notification email des soumissions du formulaire à configurer côté Netlify.

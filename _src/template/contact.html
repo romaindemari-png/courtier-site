@@ -1,0 +1,54 @@
+<main id="top">
+  <section class="phero"><div class="wrap">
+    <nav class="crumb rv" aria-label="Fil d'ariane">
+      <a href="/">Accueil</a><span class="sep" aria-hidden="true">/</span><span class="cur">{{EYEBROW}}</span>
+    </nav>
+    <h1 class="rv">{{H1}}</h1>
+    <p class="promise rv" style="transition-delay:.08s">{{INTRO}}</p>
+  </div></section>
+
+  <section class="sec xsec"><div class="wrap">
+    <div class="cgrid">
+      <!-- Netlify Forms : data-netlify + champ caché form-name + honeypot bot-field.
+           Ne fonctionne qu'une fois déployé sur Netlify (détection à la mise en ligne). -->
+      <form class="form rv" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci/">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hp" hidden><label>Ne remplissez pas ce champ : <input name="bot-field"></label></p>
+
+        <div class="field">
+          <label for="f-nom">Nom <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-nom" name="nom" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-societe">Société <span class="opt">(optionnel)</span></label>
+          <input id="f-societe" name="societe" type="text" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="f-sujet">Domaine concerné <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-sujet" name="sujet" required>
+            <option value="" disabled selected>Choisir un domaine…</option>
+{{SUJET_OPTIONS}}
+            <option value="Autre">Autre / je ne sais pas</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="f-message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="cta solid"><span>Envoyer le message</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></button>
+      </form>
+
+      <aside class="caside rv" style="transition-delay:.1s">
+        <!-- ⚠ Coordonnées À CONFIRMER PAR LE CLIENT (email + adresse exacts). Ne rien inventer. -->
+        <div class="meta-stack">
+{{CONTACT_META}}
+        </div>
+      </aside>
+    </div>
+  </div></section>
+</main>
