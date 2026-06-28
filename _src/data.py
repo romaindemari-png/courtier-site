@@ -167,6 +167,7 @@ ACTUS = {
     "page_h1":      "Actualités",
     "page_intro":   "Interventions, publications, apparitions médias et décisions marquantes du cabinet.",
     "filter_all":   "Tout",
+    "link_label":   "En savoir plus",
     "loading":      "Chargement des actualités…",
     "empty":        "Aucune actualité pour le moment.",
     "error":        "Les actualités sont momentanément indisponibles.",

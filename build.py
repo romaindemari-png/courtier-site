@@ -232,7 +232,8 @@ def legal_body():  # valeurs connues injectées ; le reste = [À COMPLÉTER] dan
 
 # ─────────────────────────── Module Actualités (lecture seule) ──────────────────
 def actus_config():  # config (libellés/couleurs/états) en JSON non exécutable → lu par actus.js
-    cfg = {"types": D.ACTUS["types"], "empty": D.ACTUS["empty"], "error": D.ACTUS["error"]}
+    cfg = {"types": D.ACTUS["types"], "empty": D.ACTUS["empty"], "error": D.ACTUS["error"],
+           "link_label": D.ACTUS["link_label"]}
     return '<script type="application/json" id="actus-config">%s</script>' % json.dumps(cfg, ensure_ascii=False)
 
 def actus_filters():

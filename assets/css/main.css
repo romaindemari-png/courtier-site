@@ -293,20 +293,28 @@ section[id],main[id]{scroll-margin-top:88px}
 .actus-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2rem,4vw,3rem);max-width:none}
 .actus-head-row .ey{display:block;margin-bottom:1rem}
 .actus-head-row h2{font-family:'PST',serif;font-weight:400;font-size:clamp(2.1rem,5vw,3.8rem);line-height:1.02;letter-spacing:-.01em}
-/* Liste — filets fins, écho des cards */
-.actus-list{display:flex;flex-direction:column}
-.actu{position:relative;padding:clamp(1.3rem,2.6vw,1.9rem) 0;border-top:1px solid var(--line)}
-.actu:last-child{border-bottom:1px solid var(--line)}
-.actu-head{display:flex;align-items:center;gap:.65rem;margin-bottom:.7rem;flex-wrap:wrap}
+/* Grille de cards — réutilise le langage des cards Expertises (filet 1px, PST/David,
+   ligne accent au hover) ; pas d'image. Grille 3/2/1 colonnes, recompose au filtrage. */
+.actus-list{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.3rem,2.8vw,2.4rem)}
+@media(max-width:900px){.actus-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.actus-list{grid-template-columns:1fr}}
+.actu{position:relative;display:flex;flex-direction:column;padding:clamp(1.2rem,2.2vw,1.6rem) 0 0;border-top:1px solid var(--line)}
+/* ligne accent qui pousse au hover — UNIQUEMENT si la card a un lien */
+.actu.has-lien{cursor:pointer;color:inherit}
+.actu.has-lien::before{content:"";position:absolute;top:-1px;left:0;height:1px;width:0;background:var(--accent);transition:width .55s var(--ease)}
+.actu.has-lien:hover::before{width:100%}
+.actu.has-lien:hover .actu-titre{color:var(--accent)}
+.actu.has-lien:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:3px}
+.actu-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem;flex-wrap:wrap}
 .actu-dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px}
 .actu-type{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .actu-pin{font-size:.72rem;color:var(--accent);line-height:1}
 .actu-date{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:auto}
-.actu-titre{font-family:'PST',serif;font-weight:400;font-size:clamp(1.25rem,2.3vw,1.8rem);line-height:1.1;letter-spacing:-.01em}
-.actu-corps{font-weight:200;font-size:1rem;line-height:1.6;color:var(--muted);margin-top:.5rem;max-width:66ch}
-.actu-lien{display:inline-flex;align-items:center;margin-top:.85rem;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid transparent;transition:border-color .25s var(--ease)}
-.actu-lien:hover{border-color:var(--accent)}
-.actu-lien:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.actu-titre{font-family:'PST',serif;font-weight:400;font-size:clamp(1.2rem,1.9vw,1.55rem);line-height:1.12;letter-spacing:-.01em;transition:color .3s var(--ease)}
+.actu-corps{font-weight:200;font-size:.97rem;line-height:1.58;color:var(--muted);margin-top:.5rem}
+/* "En savoir plus" : indicateur de card cliquable, aligné en bas de card */
+.actu-go{margin-top:auto;padding-top:.95rem;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:.35rem}
+.actu.has-lien:hover .actu-go{text-decoration:underline;text-underline-offset:3px}
 .actus-state{font-weight:200;color:var(--muted);padding:1.3rem 0}
 /* Barre de filtres (pilules sobres) */
 .actus-filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:clamp(1.6rem,3vw,2.4rem)}

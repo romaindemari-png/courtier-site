@@ -28,9 +28,12 @@
 
   function render(item) {
     var t = TYPES[item.type] || { label: item.type || '', color: '#675F50' };
-    var art = document.createElement('article');
-    art.className = 'actu';
-    art.setAttribute('data-type', item.type || '');
+    // Lien externe http(s) uniquement → la card entière devient cliquable (sinon <article> inerte).
+    var hasLien = !!(item.lien && /^https?:\/\//i.test(item.lien));
+    var card = document.createElement(hasLien ? 'a' : 'article');
+    card.className = 'actu' + (hasLien ? ' has-lien' : '');
+    card.setAttribute('data-type', item.type || '');
+    if (hasLien) { card.href = item.lien; card.target = '_blank'; card.rel = 'noopener'; }
 
     var head = document.createElement('div'); head.className = 'actu-head';
     var dot = document.createElement('span'); dot.className = 'actu-dot'; dot.style.background = t.color; dot.setAttribute('aria-hidden', 'true');
@@ -44,23 +47,21 @@
     var time = document.createElement('time'); time.className = 'actu-date';
     if (item.date) { time.setAttribute('datetime', item.date); time.textContent = fmtDate(item.date); }
     head.appendChild(time);
-    art.appendChild(head);
+    card.appendChild(head);
 
     var h = document.createElement('h3'); h.className = 'actu-titre'; h.textContent = item.titre || '';
-    art.appendChild(h);
+    card.appendChild(h);
 
-    if (item.corps) { var p = document.createElement('p'); p.className = 'actu-corps'; p.textContent = item.corps; art.appendChild(p); }
+    if (item.corps) { var p = document.createElement('p'); p.className = 'actu-corps'; p.textContent = item.corps; card.appendChild(p); }
 
-    // Lien externe optionnel — seulement http(s) (pas de javascript: …)
-    if (item.lien && /^https?:\/\//i.test(item.lien)) {
-      var a = document.createElement('a'); a.className = 'actu-lien';
-      a.href = item.lien; a.target = '_blank'; a.rel = 'noopener';
-      a.textContent = 'En savoir plus';
+    if (hasLien) {
+      var go = document.createElement('span'); go.className = 'actu-go';
+      go.textContent = CFG.link_label || 'En savoir plus';
       var arr = document.createElement('span'); arr.setAttribute('aria-hidden', 'true'); arr.textContent = ' ↗';
-      a.appendChild(arr);
-      art.appendChild(a);
+      go.appendChild(arr);
+      card.appendChild(go);
     }
-    return art;
+    return card;
   }
 
   function paint(container, items) {
