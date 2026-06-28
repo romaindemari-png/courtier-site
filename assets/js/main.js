@@ -24,15 +24,10 @@
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
 
-    // Menu mobile ouvert → stop Lenis (sinon scroll bloqué) ; fermé → start.
-    var mmEl = document.getElementById('mm');
-    if (mmEl) new MutationObserver(function () {
-      if (mmEl.classList.contains('open')) lenis.stop(); else lenis.start();
-    }).observe(mmEl, { attributes: true, attributeFilter: ['class'] });
-
     // Ancres internes (#section) via lenis.scrollTo — préserve le smooth.
-    // (Les liens inter-pages "/#section" commencent par "/" → navigation normale.)
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    // (Les liens inter-pages "/#section" commencent par "/" → navigation normale ;
+    //  le skip-link est géré à part pour déplacer le focus.)
+    document.querySelectorAll('a[href^="#"]:not(.skip)').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href');
         if (id.length < 2) return;                 // ignore href="#"
@@ -42,6 +37,42 @@
         lenis.start();                             // au cas où le menu l'a stoppé
         lenis.scrollTo(target, { offset: -HEADER_H });
       });
+    });
+  }
+
+  /* ---------- Menu mobile — accessibilité (toutes situations) ---------- */
+  var mmNav = document.getElementById('mm'), burger = document.querySelector('.burger');
+  if (mmNav && burger) {
+    var wasOpen = false;
+    function syncMenu() {
+      var open = mmNav.classList.contains('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mmNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (lenis) { if (open) lenis.stop(); else lenis.start(); }   // sinon scroll bloqué
+      if (open) { var f = mmNav.querySelector('a,button'); if (f) f.focus(); }
+      else if (wasOpen) { burger.focus(); }                        // retour focus au burger
+      wasOpen = open;
+    }
+    new MutationObserver(syncMenu).observe(mmNav, { attributes: true, attributeFilter: ['class'] });
+    document.addEventListener('keydown', function (e) {
+      if (!mmNav.classList.contains('open')) return;
+      if (e.key === 'Escape') { mmNav.classList.remove('open'); return; }
+      if (e.key === 'Tab') {                                       // focus-trap simple
+        var f = mmNav.querySelectorAll('a,button'); if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  /* ---------- Skip-link → déplace le focus vers le contenu principal ---------- */
+  var skip = document.querySelector('.skip'), mainEl = document.getElementById('top');
+  if (skip && mainEl) {
+    skip.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
+      mainEl.focus({ preventScroll: true });
     });
   }
 

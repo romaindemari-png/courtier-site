@@ -64,22 +64,23 @@
 }
 </script>
 </head><body>
+<a class="skip" href="#top">Aller au contenu</a>
 <div class="grain"></div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="0.18 0.925"/><feFuncG type="table" tableValues="0.169 0.906"/><feFuncB type="table" tableValues="0.961 0.859"/></feComponentTransfer></filter></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="0.18 0.925"/><feFuncG type="table" tableValues="0.169 0.906"/><feFuncB type="table" tableValues="0.961 0.859"/></feComponentTransfer></filter></svg>
 
 <header class="hd"><div class="wrap">
   <a class="brand" href="#top"><span class="mono">NC</span><span class="bmark">Nicolas Courtier</span></a>
-  <nav class="nav">
+  <nav class="nav" aria-label="Navigation principale">
     <span class="links">
       <a class="lnk" href="#cabinet">Le cabinet</a><a class="lnk" href="#expertises">Expertises</a><a class="lnk" href="#approche">L'approche</a>
-      <a class="cta" href="/contact/"><span>Prendre rendez-vous</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <a class="cta" href="/contact/"><span>Prendre rendez-vous</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
     </span>
-    <button class="burger" aria-label="Menu" onclick="document.getElementById('mm').classList.add('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 8h18M3 16h18"/></svg></button>
+    <button class="burger" aria-label="Ouvrir le menu" aria-controls="mm" aria-expanded="false" onclick="document.getElementById('mm').classList.add('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 8h18M3 16h18"/></svg></button>
   </nav>
 </div></header>
 
-<nav class="mm" id="mm">
-  <button class="x" aria-label="Fermer" onclick="document.getElementById('mm').classList.remove('open')"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 6l14 14M20 6L6 20"/></svg></button>
+<nav class="mm" id="mm" aria-label="Menu" aria-hidden="true">
+  <button class="x" aria-label="Fermer le menu" onclick="document.getElementById('mm').classList.remove('open')"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M6 6l14 14M20 6L6 20"/></svg></button>
   <a href="#cabinet" onclick="document.getElementById('mm').classList.remove('open')">Le cabinet</a>
   <a href="#expertises" onclick="document.getElementById('mm').classList.remove('open')">Expertises</a>
   <a href="#approche" onclick="document.getElementById('mm').classList.remove('open')">L'approche</a>
@@ -87,7 +88,7 @@
 </nav>
 
 <script>window.HERO={words:["forme", "prix", "frontière", "contour"],images:{"forme": "/assets/img/forme.webp", "prix": "/assets/img/prix.webp", "frontière": "/assets/img/approche-gratte-ciels.webp", "contour": "/assets/img/contour.webp"}};</script>
-<main id="top">
+<main id="top" tabindex="-1">
   <section class="hero"><div class="wrap">
     <div class="h-right">
       <p class="h-base">Trente-cinq ans de barreau au service de votre patrimoine immatériel — marques, créations, données, contrats.</p>
@@ -119,10 +120,10 @@
   <section class="sec" id="expertises"><div class="wrap">
     <div class="shead rv"><span class="ey">Expertises</span><h2>Ce que je défends.</h2></div>
     <div class="cards stg">
-      <a class="card" href="/expertises/propriete-intellectuelle/" data-img="forme"><span class="num serif">01</span><div class="mid"><span class="lab">Propriété intellectuelle</span><h3>Marques &amp; créations</h3><p>Droit d'auteur, dessins &amp; modèles, noms de domaine, contrefaçon.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><circle cx="20" cy="20" r="13"/><path d="M20 12.5v15M13.5 16.25l13 7.5M26.5 16.25l-13 7.5"/></svg></span></a>
-      <a class="card" href="/expertises/droit-du-numerique/" data-img="contour"><span class="num serif">02</span><div class="mid"><span class="lab">Droit du numérique</span><h3>Contrats &amp; plateformes</h3><p>Contrats IT, NIS2, intelligence artificielle, IA Act.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M15 13l-7 7 7 7M25 13l7 7-7 7M22 11l-4 18"/></svg></span></a>
-      <a class="card" href="/expertises/donnees-personnelles/" data-img="prix"><span class="num serif">03</span><div class="mid"><span class="lab">Données personnelles</span><h3>RGPD &amp; mission DPO</h3><p>Mise en conformité, transferts, contrôles et sanctions CNIL.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="20" cy="12" rx="11" ry="4"/><path d="M9 12v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8"/><path d="M9 20c0 2.2 4.9 4 11 4s11-1.8 11-4"/></svg></span></a>
-      <a class="card" href="/expertises/contentieux/" data-img="frontière"><span class="num serif">04</span><div class="mid"><span class="lab">Contentieux</span><h3>Défense &amp; litige</h3><p>Concurrence déloyale, e-réputation, devant toutes juridictions.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 9v22M12 31h16M11 15l18-5"/><path d="M11 15l-4 8h8l-4-8zM29 10l-4 8h8l-4-8z"/></svg></span></a>
+      <a class="card" href="/expertises/propriete-intellectuelle/" data-img="forme"><span class="num serif">01</span><div class="mid"><span class="lab">Propriété intellectuelle</span><h3>Marques &amp; créations</h3><p>Droit d'auteur, dessins &amp; modèles, noms de domaine, contrefaçon.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="13"/><path d="M20 12.5v15M13.5 16.25l13 7.5M26.5 16.25l-13 7.5"/></svg></span></a>
+      <a class="card" href="/expertises/droit-du-numerique/" data-img="contour"><span class="num serif">02</span><div class="mid"><span class="lab">Droit du numérique</span><h3>Contrats &amp; plateformes</h3><p>Contrats IT, NIS2, intelligence artificielle, IA Act.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M15 13l-7 7 7 7M25 13l7 7-7 7M22 11l-4 18"/></svg></span></a>
+      <a class="card" href="/expertises/donnees-personnelles/" data-img="prix"><span class="num serif">03</span><div class="mid"><span class="lab">Données personnelles</span><h3>RGPD &amp; mission DPO</h3><p>Mise en conformité, transferts, contrôles et sanctions CNIL.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><ellipse cx="20" cy="12" rx="11" ry="4"/><path d="M9 12v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8"/><path d="M9 20c0 2.2 4.9 4 11 4s11-1.8 11-4"/></svg></span></a>
+      <a class="card" href="/expertises/contentieux/" data-img="frontière"><span class="num serif">04</span><div class="mid"><span class="lab">Contentieux</span><h3>Défense &amp; litige</h3><p>Concurrence déloyale, e-réputation, devant toutes juridictions.</p></div><span class="ico"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M20 9v22M12 31h16M11 15l18-5"/><path d="M11 15l-4 8h8l-4-8zM29 10l-4 8h8l-4-8z"/></svg></span></a>
     </div>
     <div class="trail" id="trail"><img id="trailimg" alt=""></div>
   </div></section>
@@ -147,7 +148,7 @@
   <section class="dark sec contact" id="contact"><div class="wrap">
     <div class="rv"><span class="ey" style="display:block;margin-bottom:1.2rem">Contact</span><h2>Parlons de votre <span class="ac grad">projet</span>.</h2></div>
     <div class="row rv" style="transition-delay:.1s">
-      <a class="cta solid" href="/contact/"><span>Écrire au cabinet</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <a class="cta solid" href="/contact/"><span>Écrire au cabinet</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
       <a class="tlink" href="/contact/">Prendre rendez-vous</a>
     </div>
     <div class="meta stg">

@@ -29,7 +29,7 @@ COLORS = {
     "dark":     "#1A1815",
     "onDark":   "#EDE8DD",
     "accent":   "#2E2BF5",
-    "muted":    "#8C8472",
+    "muted":    "#675F50",                      # gris-brun chaud, contraste 5,1:1 sur crème (WCAG AA)
     "mutedDk":  "rgba(237,232,221,.55)",
     "line":     "rgba(22,20,15,.18)",
     "lineDk":   "rgba(237,232,221,.16)",
@@ -162,10 +162,10 @@ STEPS = [
 ]
 
 # ── Icônes SVG des cards (décoratives, par expertise) ───────────────────────────
-_IC_PI   = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><circle cx="20" cy="20" r="13"/><path d="M20 12.5v15M13.5 16.25l13 7.5M26.5 16.25l-13 7.5"/></svg>'
-_IC_NUM  = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M15 13l-7 7 7 7M25 13l7 7-7 7M22 11l-4 18"/></svg>'
-_IC_RGPD = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="20" cy="12" rx="11" ry="4"/><path d="M9 12v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8"/><path d="M9 20c0 2.2 4.9 4 11 4s11-1.8 11-4"/></svg>'
-_IC_CONT = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 9v22M12 31h16M11 15l18-5"/><path d="M11 15l-4 8h8l-4-8zM29 10l-4 8h8l-4-8z"/></svg>'
+_IC_PI   = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="13"/><path d="M20 12.5v15M13.5 16.25l13 7.5M26.5 16.25l-13 7.5"/></svg>'
+_IC_NUM  = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M15 13l-7 7 7 7M25 13l7 7-7 7M22 11l-4 18"/></svg>'
+_IC_RGPD = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><ellipse cx="20" cy="12" rx="11" ry="4"/><path d="M9 12v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8"/><path d="M9 20c0 2.2 4.9 4 11 4s11-1.8 11-4"/></svg>'
+_IC_CONT = '<svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M20 9v22M12 31h16M11 15l18-5"/><path d="M11 15l-4 8h8l-4-8zM29 10l-4 8h8l-4-8z"/></svg>'
 
 # ── Expertises (nombre LIBRE : le build boucle, pas de 4 codé en dur) ───────────
 # Chaque entrée = 1 page /expertises/<slug>/ + 1 card sur l'accueil + maillage + sitemap.

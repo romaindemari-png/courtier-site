@@ -23,29 +23,30 @@
 <link rel="stylesheet" href="/assets/css/main.css">
 
 </head><body>
+<a class="skip" href="#top">Aller au contenu</a>
 <div class="grain"></div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="0.18 0.925"/><feFuncG type="table" tableValues="0.169 0.906"/><feFuncB type="table" tableValues="0.961 0.859"/></feComponentTransfer></filter></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="duo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="0.18 0.925"/><feFuncG type="table" tableValues="0.169 0.906"/><feFuncB type="table" tableValues="0.961 0.859"/></feComponentTransfer></filter></svg>
 
 <header class="hd"><div class="wrap">
   <a class="brand" href="/#top"><span class="mono">NC</span><span class="bmark">Nicolas Courtier</span></a>
-  <nav class="nav">
+  <nav class="nav" aria-label="Navigation principale">
     <span class="links">
       <a class="lnk" href="/#cabinet">Le cabinet</a><a class="lnk" href="/#expertises">Expertises</a><a class="lnk" href="/#approche">L'approche</a>
-      <a class="cta" href="/contact/"><span>Prendre rendez-vous</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+      <a class="cta" href="/contact/"><span>Prendre rendez-vous</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
     </span>
-    <button class="burger" aria-label="Menu" onclick="document.getElementById('mm').classList.add('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 8h18M3 16h18"/></svg></button>
+    <button class="burger" aria-label="Ouvrir le menu" aria-controls="mm" aria-expanded="false" onclick="document.getElementById('mm').classList.add('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 8h18M3 16h18"/></svg></button>
   </nav>
 </div></header>
 
-<nav class="mm" id="mm">
-  <button class="x" aria-label="Fermer" onclick="document.getElementById('mm').classList.remove('open')"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 6l14 14M20 6L6 20"/></svg></button>
+<nav class="mm" id="mm" aria-label="Menu" aria-hidden="true">
+  <button class="x" aria-label="Fermer le menu" onclick="document.getElementById('mm').classList.remove('open')"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M6 6l14 14M20 6L6 20"/></svg></button>
   <a href="/#cabinet" onclick="document.getElementById('mm').classList.remove('open')">Le cabinet</a>
   <a href="/#expertises" onclick="document.getElementById('mm').classList.remove('open')">Expertises</a>
   <a href="/#approche" onclick="document.getElementById('mm').classList.remove('open')">L'approche</a>
   <a href="/contact/" onclick="document.getElementById('mm').classList.remove('open')">Contact</a>
 </nav>
 
-<main id="top">
+<main id="top" tabindex="-1">
   <section class="phero"><div class="wrap">
     <nav class="crumb rv" aria-label="Fil d'ariane">
       <a href="/">Accueil</a><span class="sep" aria-hidden="true">/</span><span class="cur">Contact</span>
@@ -90,7 +91,7 @@
           <textarea id="f-message" name="message" rows="6" required></textarea>
         </div>
 
-        <button type="submit" class="cta solid"><span>Envoyer le message</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg></button>
+        <button type="submit" class="cta solid"><span>Envoyer le message</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4"/></svg></button>
       </form>
 
       <aside class="caside rv" style="transition-delay:.1s">
