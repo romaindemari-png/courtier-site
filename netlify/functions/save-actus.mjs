@@ -1,6 +1,6 @@
 // Écriture des actualités — Identity-gated (PALIER 2b). Handler v1 (context.clientContext.user).
 // Reçoit le TABLEAU COMPLET, le valide côté serveur, écrit en bloc (last-write-wins, éditeur unique).
-import { getStore } from "@netlify/blobs";
+import { connectLambda, getStore } from "@netlify/blobs";
 
 const TYPES = ["intervention", "publication", "media", "decision"];
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -38,6 +38,10 @@ export function clean(arr) {  // exportée pour les tests unitaires (Netlify n'u
 }
 
 export const handler = async (event, context) => {
+  // Les Functions v1 (handler classique) ne reçoivent PAS le contexte Blobs auto-injecté
+  // (contrairement aux v2 `export default`). connectLambda(event) l'extrait de l'event
+  // → getStore("content") fonctionne ensuite en lecture ET écriture (sinon MissingBlobsEnvironmentError).
+  connectLambda(event);
   const user = context.clientContext && context.clientContext.user;
   if (!user) {
     return { statusCode: 401, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ error: "Unauthorized" }) };

@@ -1,8 +1,12 @@
 // Lecture ADMIN des actualités — Identity-gated (PALIER 2a : LECTURE SEULE).
 // Handler v1 OBLIGATOIRE : context.clientContext.user n'est peuplé qu'en v1 (signature event/context).
-import { getStore } from "@netlify/blobs";
+import { connectLambda, getStore } from "@netlify/blobs";
 
 export const handler = async (event, context) => {
+  // Les Functions v1 (handler classique) ne reçoivent PAS le contexte Blobs auto-injecté
+  // (contrairement aux v2 `export default`). connectLambda(event) l'extrait de l'event
+  // → getStore("content") fonctionne ensuite en lecture ET écriture (sinon MissingBlobsEnvironmentError).
+  connectLambda(event);
   // Garde d'authentification : sans utilisateur Identity validé → 401, aucune donnée.
   const user = context.clientContext && context.clientContext.user;
   if (!user) {
