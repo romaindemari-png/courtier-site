@@ -180,6 +180,22 @@ ACTUS = {
     ],
 }
 
+# ── Admin Actualités (outil privé — Identity) ──────────────────────────────────
+ADMIN = {
+    "title":           "Admin · Actualités — Nicolas Courtier",
+    "h1":              "Espace administration",
+    "intro":           "Connectez-vous pour gérer les actualités du cabinet.",
+    "login":           "Se connecter",
+    "logout":          "Se déconnecter",
+    "dash_title":      "Actualités",
+    "loading":         "Chargement…",
+    "empty":           "Aucune brève enregistrée.",
+    "error":           "Impossible de charger les brèves (session expirée ?).",
+    "draft_label":     "Brouillon",
+    "published_label": "Publié",
+    "pinned_label":    "Épinglé",
+}
+
 # ── Étapes communes "Comment ça se passe" (provisoire, à valider) ───────────────
 STEPS = [
     ("Diagnostic", "On fait le point sur votre situation, vos actifs et vos risques — un état des lieux clair, sans jargon."),

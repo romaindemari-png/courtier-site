@@ -39,6 +39,7 @@ contact_t = rd("_src/template/contact.html")
 merci_t   = rd("_src/template/merci.html")
 legal_t   = rd("_src/template/mentions-legales.html")
 actus_t   = rd("_src/template/actualites.html")
+admin_t   = rd("_src/template/admin.html")
 
 # ─────────────────────────── Fragments réutilisables ───────────────────────────
 def picture(img, eager=False):
@@ -252,6 +253,24 @@ def actualites_body():
         "{{ACTUS_LOADING}}": esc(D.ACTUS["loading"]),
     })
 
+# ─────────────────────────── Admin (outil privé, standalone) ────────────────────
+def admin_config_json():
+    cfg = {"types": D.ACTUS["types"],
+           "draft_label": D.ADMIN["draft_label"], "published_label": D.ADMIN["published_label"],
+           "pinned_label": D.ADMIN["pinned_label"], "loading": D.ADMIN["loading"],
+           "empty": D.ADMIN["empty"], "error": D.ADMIN["error"]}
+    return '<script type="application/json" id="admin-config">%s</script>' % json.dumps(cfg, ensure_ascii=False)
+
+def admin_page():  # page standalone (ni base.html, ni header/footer publics)
+    out = render(admin_t, {
+        "{{TITLE}}": att(D.ADMIN["title"]), "{{ADMIN_CONFIG}}": admin_config_json(),
+        "{{BRAND}}": esc(D.BRAND), "{{LOGOUT}}": esc(D.ADMIN["logout"]),
+        "{{H1}}": esc(D.ADMIN["h1"]), "{{INTRO}}": esc(D.ADMIN["intro"]),
+        "{{LOGIN}}": esc(D.ADMIN["login"]), "{{DASH_TITLE}}": esc(D.ADMIN["dash_title"]),
+        "{{LOADING}}": esc(D.ADMIN["loading"]),
+    })
+    return out.replace("<!DOCTYPE html>", "<!DOCTYPE html>\n" + BANNER, 1)
+
 # ─────────────────────────── Corps expertise ───────────────────────────────────
 def steps_html():
     return "\n".join('      <div class="step"><div class="sn serif">%02d</div><h3>%s</h3><p>%s</p></div>'
@@ -301,6 +320,8 @@ def build():
     actus_crumbs = breadcrumb_jsonld([("Accueil", D.SITE + "/"), ("Actualités", D.SITE + "/actualites/")])
     wr("actualites/index.html",
        page(D.ACTUS["page_title"], D.ACTUS["page_desc"], D.SITE + "/actualites/", actus_crumbs, actualites_body(), "/"))
+    # Admin (outil privé, noindex, hors sitemap) — gabarit standalone
+    wr("admin/index.html", admin_page())
 
     urls = ([(D.SITE + "/", "1.0")]
             + [("%s/expertises/%s/" % (D.SITE, d["slug"]), "0.8") for d in D.DOMAINS]
@@ -319,7 +340,7 @@ def build():
     for d in D.DOMAINS:
         print("  - expertises/%s/index.html" % d["slug"])
     print("  - contact/index.html, merci/index.html, mentions-legales/index.html")
-    print("  - actualites/index.html")
+    print("  - actualites/index.html, admin/index.html")
     print("  - sitemap.xml, robots.txt")
 
 if __name__ == "__main__":

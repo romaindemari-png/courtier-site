@@ -1,0 +1,47 @@
+/* Admin Actualités — feuille de style dédiée (outil sobre, autonome ; pas la DA publique).
+   Tokens couleur via tokens.css. Polices locales redéclarées (main.css non chargé ici). */
+@font-face{font-family:'PST';src:url(/assets/fonts/pst-regular.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'David';src:url(/assets/fonts/david-light.woff2) format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'David';src:url(/assets/fonts/david-extralight.woff2) format('woff2');font-weight:200;font-display:swap}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'David',sans-serif;font-weight:200;background:var(--cream2);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.admin{max-width:880px;margin:0 auto;padding:clamp(1.2rem,4vw,2.4rem)}
+.admin-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);margin-bottom:clamp(1.8rem,4vw,2.8rem)}
+.admin-brand{font-family:'PST',serif;font-size:1rem;letter-spacing:.04em}
+.admin-tag{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:999px;padding:.18em .6em;vertical-align:.15em;margin-left:.3rem}
+.admin-h1{font-family:'PST',serif;font-weight:400;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.05;letter-spacing:-.01em}
+.admin-muted{font-weight:200;font-size:.92rem;color:var(--muted)}
+
+/* Boutons */
+.abtn{font-family:'David';font-weight:200;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:none;border:1px solid var(--ink);border-radius:999px;padding:.7rem 1.4rem;cursor:pointer;transition:color .25s,background .25s,border-color .25s}
+.abtn:hover{color:#fff;background:var(--ink)}
+.abtn--primary{color:#fff;background:var(--accent);border-color:var(--accent)}
+.abtn--primary:hover{background:var(--ink);border-color:var(--ink)}
+
+/* Écran déconnecté */
+.admin-card{max-width:420px;margin:clamp(2rem,8vh,5rem) auto 0;text-align:center;display:flex;flex-direction:column;gap:1.1rem;align-items:center}
+.admin-card .admin-muted{margin-bottom:.4rem}
+
+/* Tableau de bord */
+.admin-dhead{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(1.2rem,3vw,2rem)}
+.admin-list{display:flex;flex-direction:column}
+.admin-item{display:flex;flex-direction:column;gap:.5rem;padding:clamp(1rem,2.4vw,1.4rem) 0;border-top:1px solid var(--line)}
+.admin-item:last-child{border-bottom:1px solid var(--line)}
+.admin-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.admin-dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px}
+.admin-type{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.admin-date{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+.admin-it-titre{font-family:'PST',serif;font-weight:400;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.15}
+.admin-it-corps{font-weight:200;font-size:.94rem;line-height:1.5;color:var(--muted)}
+/* Badges statut */
+.admin-badge{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:.2em .7em;border:1px solid}
+.admin-badge--draft{color:var(--muted);border-color:var(--line);background:rgba(22,20,15,.04)}
+.admin-badge--pub{color:#fff;border-color:var(--accent);background:var(--accent)}
+.admin-badge--pin{color:var(--accent);border-color:var(--accent);background:none}
+
+.admin-state{font-weight:200;color:var(--muted);padding:1.2rem 0}
+.admin-boot{text-align:center;color:var(--muted)}
+[hidden]{display:none!important}

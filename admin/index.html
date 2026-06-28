@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- FICHIER GÉNÉRÉ PAR build.py — NE PAS ÉDITER À LA MAIN. Modifier _src/ puis relancer python3 build.py --><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Actualités — Nicolas Courtier</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/pst-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/david-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/admin.css">
+<script type="application/json" id="admin-config">{"types": [{"key": "intervention", "label": "Intervention", "color": "#2E2BF5"}, {"key": "publication", "label": "Publication", "color": "#7B4DFF"}, {"key": "media", "label": "Média", "color": "#16140F"}, {"key": "decision", "label": "Décision", "color": "#675F50"}], "draft_label": "Brouillon", "published_label": "Publié", "pinned_label": "Épinglé", "loading": "Chargement…", "empty": "Aucune brève enregistrée.", "error": "Impossible de charger les brèves (session expirée ?)."}</script>
+</head><body>
+<main class="admin">
+  <header class="admin-top">
+    <span class="admin-brand">Nicolas Courtier <span class="admin-tag">Admin</span></span>
+    <button type="button" id="logout" class="abtn" hidden>Se déconnecter</button>
+  </header>
+
+  <!-- Écran déconnecté -->
+  <section id="signin" class="admin-card" hidden>
+    <h1 class="admin-h1">Espace administration</h1>
+    <p class="admin-muted">Connectez-vous pour gérer les actualités du cabinet.</p>
+    <button type="button" id="login" class="abtn abtn--primary">Se connecter</button>
+  </section>
+
+  <!-- Écran connecté (lecture seule en 2a) -->
+  <section id="dash" class="admin-dash" hidden>
+    <div class="admin-dhead">
+      <h1 class="admin-h1">Actualités</h1>
+      <span id="admin-user" class="admin-muted"></span>
+    </div>
+    <div id="admin-list" class="admin-list" aria-live="polite">
+      <p class="admin-state">Chargement…</p>
+    </div>
+  </section>
+
+  <!-- Pendant l'initialisation du widget -->
+  <p id="admin-boot" class="admin-state admin-boot">Chargement…</p>
+</main>
+<script src="/assets/js/vendor/netlify-identity-widget.js"></script>
+<script src="/assets/js/admin.js"></script>
+</body></html>
