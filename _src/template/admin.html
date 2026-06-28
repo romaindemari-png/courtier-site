@@ -21,12 +21,35 @@
     <button type="button" id="login" class="abtn abtn--primary">{{LOGIN}}</button>
   </section>
 
-  <!-- Écran connecté (lecture seule en 2a) -->
+  <!-- Écran connecté -->
   <section id="dash" class="admin-dash" hidden>
     <div class="admin-dhead">
       <h1 class="admin-h1">{{DASH_TITLE}}</h1>
       <span id="admin-user" class="admin-muted"></span>
     </div>
+
+    <form id="actu-form" class="admin-form" novalidate>
+      <p class="admin-legend">{{FORM_LEGEND}}</p>
+      <input type="hidden" id="f-id">
+      <div class="admin-frow">
+        <label class="admin-field"><span>{{FORM_DATE}}</span><input type="date" id="f-date" required></label>
+        <label class="admin-field"><span>{{FORM_TYPE}}</span><select id="f-type" required>{{TYPE_OPTIONS}}</select></label>
+      </div>
+      <label class="admin-field"><span>{{FORM_TITRE}}</span><input type="text" id="f-titre" maxlength="140" required></label>
+      <label class="admin-field"><span>{{FORM_CORPS}}</span><textarea id="f-corps" maxlength="600" rows="4"></textarea></label>
+      <label class="admin-field"><span>{{FORM_LIEN}}</span><input type="url" id="f-lien" placeholder="https://…"></label>
+      <div class="admin-frow admin-checks">
+        <label class="admin-check"><input type="checkbox" id="f-epingle"> {{FORM_EPINGLE}}</label>
+        <label class="admin-check"><input type="checkbox" id="f-publie"> {{FORM_PUBLIE}}</label>
+      </div>
+      <div class="admin-factions">
+        <button type="submit" class="abtn abtn--primary" id="f-save">{{SAVE}}</button>
+        <button type="button" class="abtn" id="f-cancel" hidden>{{CANCEL}}</button>
+        <span class="admin-formmsg" id="f-msg" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <h2 class="admin-listtitle">{{LIST_TITLE}}</h2>
     <div id="admin-list" class="admin-list" aria-live="polite">
       <p class="admin-state">{{LOADING}}</p>
     </div>
@@ -34,6 +57,7 @@
 
   <!-- Pendant l'initialisation du widget -->
   <p id="admin-boot" class="admin-state admin-boot">{{LOADING}}</p>
+  <p class="admin-hint">{{ADBLOCK_HINT}}</p>
 </main>
 <script src="/assets/js/vendor/netlify-identity-widget.js"></script>
 <script src="/assets/js/admin.js"></script>

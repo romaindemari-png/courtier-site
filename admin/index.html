@@ -7,7 +7,7 @@
 <link rel="preload" href="/assets/fonts/david-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/admin.css">
-<script type="application/json" id="admin-config">{"types": [{"key": "intervention", "label": "Intervention", "color": "#2E2BF5"}, {"key": "publication", "label": "Publication", "color": "#7B4DFF"}, {"key": "media", "label": "Média", "color": "#16140F"}, {"key": "decision", "label": "Décision", "color": "#675F50"}], "draft_label": "Brouillon", "published_label": "Publié", "pinned_label": "Épinglé", "loading": "Chargement…", "empty": "Aucune brève enregistrée.", "error": "Impossible de charger les brèves (session expirée ?)."}</script>
+<script type="application/json" id="admin-config">{"types": [{"key": "intervention", "label": "Intervention", "color": "#2E2BF5"}, {"key": "publication", "label": "Publication", "color": "#7B4DFF"}, {"key": "media", "label": "Média", "color": "#16140F"}, {"key": "decision", "label": "Décision", "color": "#675F50"}], "draft_label": "Brouillon", "published_label": "Publié", "pinned_label": "Épinglé", "loading": "Chargement…", "empty": "Aucune brève enregistrée.", "error": "Impossible de charger les brèves (session expirée ?).", "act_edit": "Éditer", "act_publish": "Publier", "act_unpublish": "Dépublier", "act_delete": "Supprimer", "confirm_delete": "Supprimer définitivement cette brève ? Action irréversible.", "saving": "Enregistrement…", "saved_create": "Brève créée.", "saved_update": "Brève mise à jour.", "saved_publish": "Statut mis à jour.", "saved_delete": "Brève supprimée.", "save_error": "Échec de l'enregistrement.", "need_title": "Le titre est obligatoire.", "need_type": "Choisissez un type.", "need_date": "La date est obligatoire.", "bad_link": "Lien invalide (http/https uniquement)."}</script>
 </head><body>
 <main class="admin">
   <header class="admin-top">
@@ -22,12 +22,38 @@
     <button type="button" id="login" class="abtn abtn--primary">Se connecter</button>
   </section>
 
-  <!-- Écran connecté (lecture seule en 2a) -->
+  <!-- Écran connecté -->
   <section id="dash" class="admin-dash" hidden>
     <div class="admin-dhead">
       <h1 class="admin-h1">Actualités</h1>
       <span id="admin-user" class="admin-muted"></span>
     </div>
+
+    <form id="actu-form" class="admin-form" novalidate>
+      <p class="admin-legend">Créer / éditer une brève</p>
+      <input type="hidden" id="f-id">
+      <div class="admin-frow">
+        <label class="admin-field"><span>Date</span><input type="date" id="f-date" required></label>
+        <label class="admin-field"><span>Type</span><select id="f-type" required><option value="intervention">Intervention</option>
+        <option value="publication">Publication</option>
+        <option value="media">Média</option>
+        <option value="decision">Décision</option></select></label>
+      </div>
+      <label class="admin-field"><span>Titre</span><input type="text" id="f-titre" maxlength="140" required></label>
+      <label class="admin-field"><span>Corps</span><textarea id="f-corps" maxlength="600" rows="4"></textarea></label>
+      <label class="admin-field"><span>Lien (optionnel)</span><input type="url" id="f-lien" placeholder="https://…"></label>
+      <div class="admin-frow admin-checks">
+        <label class="admin-check"><input type="checkbox" id="f-epingle"> Épingler</label>
+        <label class="admin-check"><input type="checkbox" id="f-publie"> Publié (en ligne)</label>
+      </div>
+      <div class="admin-factions">
+        <button type="submit" class="abtn abtn--primary" id="f-save">Enregistrer</button>
+        <button type="button" class="abtn" id="f-cancel" hidden>Annuler l'édition</button>
+        <span class="admin-formmsg" id="f-msg" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <h2 class="admin-listtitle">Toutes les brèves</h2>
     <div id="admin-list" class="admin-list" aria-live="polite">
       <p class="admin-state">Chargement…</p>
     </div>
@@ -35,6 +61,7 @@
 
   <!-- Pendant l'initialisation du widget -->
   <p id="admin-boot" class="admin-state admin-boot">Chargement…</p>
+  <p class="admin-hint">Si un bouton ne répond pas, désactivez votre bloqueur de publicité sur ce site.</p>
 </main>
 <script src="/assets/js/vendor/netlify-identity-widget.js"></script>
 <script src="/assets/js/admin.js"></script>

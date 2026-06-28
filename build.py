@@ -254,20 +254,36 @@ def actualites_body():
     })
 
 # ─────────────────────────── Admin (outil privé, standalone) ────────────────────
-def admin_config_json():
-    cfg = {"types": D.ACTUS["types"],
-           "draft_label": D.ADMIN["draft_label"], "published_label": D.ADMIN["published_label"],
-           "pinned_label": D.ADMIN["pinned_label"], "loading": D.ADMIN["loading"],
-           "empty": D.ADMIN["empty"], "error": D.ADMIN["error"]}
+_ADMIN_CFG_KEYS = ["draft_label", "published_label", "pinned_label", "loading", "empty", "error",
+                   "act_edit", "act_publish", "act_unpublish", "act_delete", "confirm_delete",
+                   "saving", "saved_create", "saved_update", "saved_publish", "saved_delete",
+                   "save_error", "need_title", "need_type", "need_date", "bad_link"]
+
+def admin_config_json():  # config (libellés/messages) → lue par admin.js (bloc JSON non exécutable)
+    cfg = {"types": D.ACTUS["types"]}
+    for k in _ADMIN_CFG_KEYS:
+        cfg[k] = D.ADMIN[k]
     return '<script type="application/json" id="admin-config">%s</script>' % json.dumps(cfg, ensure_ascii=False)
 
+def admin_type_options():
+    return "\n        ".join('<option value="%s">%s</option>' % (t["key"], esc(t["label"]))
+                             for t in D.ACTUS["types"])
+
 def admin_page():  # page standalone (ni base.html, ni header/footer publics)
+    A = D.ADMIN
     out = render(admin_t, {
-        "{{TITLE}}": att(D.ADMIN["title"]), "{{ADMIN_CONFIG}}": admin_config_json(),
-        "{{BRAND}}": esc(D.BRAND), "{{LOGOUT}}": esc(D.ADMIN["logout"]),
-        "{{H1}}": esc(D.ADMIN["h1"]), "{{INTRO}}": esc(D.ADMIN["intro"]),
-        "{{LOGIN}}": esc(D.ADMIN["login"]), "{{DASH_TITLE}}": esc(D.ADMIN["dash_title"]),
-        "{{LOADING}}": esc(D.ADMIN["loading"]),
+        "{{TITLE}}": att(A["title"]), "{{ADMIN_CONFIG}}": admin_config_json(),
+        "{{BRAND}}": esc(D.BRAND), "{{LOGOUT}}": esc(A["logout"]),
+        "{{H1}}": esc(A["h1"]), "{{INTRO}}": esc(A["intro"]),
+        "{{LOGIN}}": esc(A["login"]), "{{DASH_TITLE}}": esc(A["dash_title"]),
+        "{{LOADING}}": esc(A["loading"]),
+        "{{FORM_LEGEND}}": esc(A["form_legend"]), "{{FORM_DATE}}": esc(A["form_date"]),
+        "{{FORM_TYPE}}": esc(A["form_type"]), "{{FORM_TITRE}}": esc(A["form_titre"]),
+        "{{FORM_CORPS}}": esc(A["form_corps"]), "{{FORM_LIEN}}": esc(A["form_lien"]),
+        "{{FORM_EPINGLE}}": esc(A["form_epingle"]), "{{FORM_PUBLIE}}": esc(A["form_publie"]),
+        "{{TYPE_OPTIONS}}": admin_type_options(),
+        "{{SAVE}}": esc(A["save"]), "{{CANCEL}}": esc(A["cancel"]),
+        "{{LIST_TITLE}}": esc(A["list_title"]), "{{ADBLOCK_HINT}}": esc(A["adblock_hint"]),
     })
     return out.replace("<!DOCTYPE html>", "<!DOCTYPE html>\n" + BANNER, 1)
 
