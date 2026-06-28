@@ -115,8 +115,13 @@ régénérés automatiquement. Rien d'autre à toucher.
 
 ## Déploiement (Netlify)
 
-Hébergement **statique brut**, aucune build command : Netlify publie la racine du repo.
-On commite donc le HTML généré avec les sources. `build.py` tourne **en local**.
+Hébergement **statique brut**, aucune build command : Netlify publie la racine du repo
+(`netlify.toml` : `publish = "."` + headers de cache). On commite donc le HTML généré avec
+les sources. `build.py` tourne **en local**.
+
+`netlify.toml` met un cache **immutable (1 an)** sur les assets stables (`/assets/fonts`,
+`/assets/img`, `/assets/js/vendor`) et une **revalidation** sur le CSS/JS applicatif
+(`main.css`/`tokens.css`/`main.js`), non fingerprintés et régénérés à chaque build.
 
 > ⚠️ **Domaine à confirmer.** `SITE` dans `_src/data.py` vaut un placeholder de preview
 > Netlify. Au déploiement définitif : remplacer par le vrai domaine, relancer

@@ -132,6 +132,16 @@ def service_jsonld(d):
         "provider": {"@type": ["LegalService", "Attorney"], "name": D.SITE_NAME, "url": D.SITE + "/"},
     })
 
+def breadcrumb_jsonld(items):  # items = [(nom, url), …] dans l'ordre du fil d'ariane
+    return ld({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": name, "item": url}
+            for i, (name, url) in enumerate(items)
+        ],
+    })
+
 # ─────────────────────────── Corps accueil ─────────────────────────────────────
 def meta_html():  # coordonnées (accueil + page contact) — valeurs brutes (peuvent contenir <br>)
     return "\n".join('      <div><div class="k">%s</div><p>%s</p></div>' % (esc(k), v)
@@ -243,12 +253,16 @@ def build():
 
     for d in D.DOMAINS:
         canonical = "%s/expertises/%s/" % (D.SITE, d["slug"])
+        crumbs = breadcrumb_jsonld([("Accueil", D.SITE + "/"),
+                                    ("Expertises", D.SITE + "/#expertises"),
+                                    (d["domain"], canonical)])
         wr("expertises/%s/index.html" % d["slug"],
-           page(d["title"], d["desc"], canonical, service_jsonld(d), expertise_body(d), "/"))
+           page(d["title"], d["desc"], canonical, service_jsonld(d) + "\n" + crumbs, expertise_body(d), "/"))
 
     # Page contact (formulaire Netlify) + confirmation (noindex, hors sitemap)
+    contact_crumbs = breadcrumb_jsonld([("Accueil", D.SITE + "/"), ("Contact", D.SITE + "/contact/")])
     wr("contact/index.html",
-       page(D.CONTACT_PAGE["title"], D.CONTACT_PAGE["desc"], D.SITE + "/contact/", "", contact_body(), "/"))
+       page(D.CONTACT_PAGE["title"], D.CONTACT_PAGE["desc"], D.SITE + "/contact/", contact_crumbs, contact_body(), "/"))
     wr("merci/index.html",
        page(D.MERCI_PAGE["title"], D.MERCI_PAGE["desc"], D.SITE + "/merci/", "", merci_body(), "/", robots="noindex,follow"))
     # Mentions légales — accessible via le footer ; noindex tant que des [À COMPLÉTER] subsistent
