@@ -6,6 +6,10 @@
 [build]
   publish = "."
 
+# Netlify Functions (module Actualités, lecture seule)
+[functions]
+  directory = "netlify/functions"
+
 # --- En-têtes de sécurité (tout le site) ---
 # CSP : scripts/polices/images en local uniquement. Pas de 'unsafe-inline' sur les scripts
 # (le JS inline a été retiré). 'unsafe-inline' reste sur les styles (attributs style="…" du HTML).
