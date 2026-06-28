@@ -287,3 +287,30 @@ section[id],main[id]{scroll-margin-top:88px}
 .ft .base a:focus-visible,.ft .nav2 a:focus-visible,.crumb a:focus-visible,.legal a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 .mm a:focus-visible,.mm .x:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
 .brand:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+
+/* ===================== MODULE ACTUALITÉS (lecture seule) ===================== */
+/* En-tête de section accueil (titre + lien "tout voir") */
+.actus-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2rem,4vw,3rem);max-width:none}
+.actus-head-row .ey{display:block;margin-bottom:1rem}
+.actus-head-row h2{font-family:'PST',serif;font-weight:400;font-size:clamp(2.1rem,5vw,3.8rem);line-height:1.02;letter-spacing:-.01em}
+/* Liste — filets fins, écho des cards */
+.actus-list{display:flex;flex-direction:column}
+.actu{position:relative;padding:clamp(1.3rem,2.6vw,1.9rem) 0;border-top:1px solid var(--line)}
+.actu:last-child{border-bottom:1px solid var(--line)}
+.actu-head{display:flex;align-items:center;gap:.65rem;margin-bottom:.7rem;flex-wrap:wrap}
+.actu-dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px}
+.actu-type{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.actu-pin{font-size:.72rem;color:var(--accent);line-height:1}
+.actu-date{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+.actu-titre{font-family:'PST',serif;font-weight:400;font-size:clamp(1.25rem,2.3vw,1.8rem);line-height:1.1;letter-spacing:-.01em}
+.actu-corps{font-weight:200;font-size:1rem;line-height:1.6;color:var(--muted);margin-top:.5rem;max-width:66ch}
+.actu-lien{display:inline-flex;align-items:center;margin-top:.85rem;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid transparent;transition:border-color .25s var(--ease)}
+.actu-lien:hover{border-color:var(--accent)}
+.actu-lien:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.actus-state{font-weight:200;color:var(--muted);padding:1.3rem 0}
+/* Barre de filtres (pilules sobres) */
+.actus-filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+.actus-f{font-family:'David';font-weight:200;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:.55rem 1.15rem;cursor:pointer;transition:color .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease)}
+.actus-f:hover{color:var(--ink);border-color:var(--ink)}
+.actus-f.is-on{color:#fff;background:var(--ink);border-color:var(--ink)}
+.actus-f:focus-visible{outline:2px solid var(--accent);outline-offset:3px}

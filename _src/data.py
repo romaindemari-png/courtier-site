@@ -154,6 +154,31 @@ LEGAL_PAGE = {
     "intro":   "Informations légales relatives au présent site et à son éditeur, conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).",
 }
 
+# ── Module Actualités (lecture seule — Netlify Blobs) ───────────────────────────
+# Couleurs de pastille = uniquement des valeurs de la palette gelée (accent, violet du
+# dégradé, ink, muted) → aucune nouvelle couleur introduite.
+ACTUS = {
+    "home_eyebrow": "Le fil",
+    "home_title":   "Actualités",
+    "see_all":      "Toutes les actualités",
+    "page_title":   "Actualités — Nicolas Courtier, avocat à Marseille",
+    "page_desc":    "Actualités du cabinet de Nicolas Courtier, avocat à Marseille : interventions, publications, médias et décisions.",
+    "page_eyebrow": "Le fil",
+    "page_h1":      "Actualités",
+    "page_intro":   "Interventions, publications, apparitions médias et décisions marquantes du cabinet.",
+    "filter_all":   "Tout",
+    "loading":      "Chargement des actualités…",
+    "empty":        "Aucune actualité pour le moment.",
+    "error":        "Les actualités sont momentanément indisponibles.",
+    # ordre = ordre d'affichage des filtres ; color ∈ palette gelée
+    "types": [
+        {"key": "intervention", "label": "Intervention", "color": "#2E2BF5"},  # accent
+        {"key": "publication",  "label": "Publication",  "color": "#7B4DFF"},  # violet du dégradé
+        {"key": "media",        "label": "Média",        "color": "#16140F"},  # ink
+        {"key": "decision",     "label": "Décision",     "color": "#675F50"},  # muted
+    ],
+}
+
 # ── Étapes communes "Comment ça se passe" (provisoire, à valider) ───────────────
 STEPS = [
     ("Diagnostic", "On fait le point sur votre situation, vos actifs et vos risques — un état des lieux clair, sans jargon."),

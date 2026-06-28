@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <!-- FICHIER GÉNÉRÉ PAR build.py — NE PAS ÉDITER À LA MAIN. Modifier _src/ puis relancer python3 build.py --><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Message envoyé — Nicolas Courtier, avocat à Marseille</title>
-<meta name="description" content="Votre message a bien été transmis au cabinet de Nicolas Courtier, avocat à Marseille.">
-<link rel="canonical" href="https://courtier-site.netlify.app/merci/">
-<meta name="robots" content="noindex,follow">
+<title>Actualités — Nicolas Courtier, avocat à Marseille</title>
+<meta name="description" content="Actualités du cabinet de Nicolas Courtier, avocat à Marseille : interventions, publications, médias et décisions.">
+<link rel="canonical" href="https://courtier-site.netlify.app/actualites/">
+<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Nicolas Courtier — Avocat">
-<meta property="og:title" content="Message envoyé — Nicolas Courtier, avocat à Marseille">
-<meta property="og:description" content="Votre message a bien été transmis au cabinet de Nicolas Courtier, avocat à Marseille.">
-<meta property="og:url" content="https://courtier-site.netlify.app/merci/">
+<meta property="og:title" content="Actualités — Nicolas Courtier, avocat à Marseille">
+<meta property="og:description" content="Actualités du cabinet de Nicolas Courtier, avocat à Marseille : interventions, publications, médias et décisions.">
+<meta property="og:url" content="https://courtier-site.netlify.app/actualites/">
 <meta property="og:image" content="https://courtier-site.netlify.app/assets/img/portrait-nicolas-courtier.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Message envoyé — Nicolas Courtier, avocat à Marseille">
-<meta name="twitter:description" content="Votre message a bien été transmis au cabinet de Nicolas Courtier, avocat à Marseille.">
+<meta name="twitter:title" content="Actualités — Nicolas Courtier, avocat à Marseille">
+<meta name="twitter:description" content="Actualités du cabinet de Nicolas Courtier, avocat à Marseille : interventions, publications, médias et décisions.">
 <meta name="twitter:image" content="https://courtier-site.netlify.app/assets/img/portrait-nicolas-courtier.jpg">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/pst-regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,7 +21,26 @@
 <link rel="preload" href="/assets/fonts/david-extralight.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/main.css">
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://courtier-site.netlify.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Actualités",
+      "item": "https://courtier-site.netlify.app/actualites/"
+    }
+  ]
+}
+</script>
 </head><body>
 <a class="skip" href="#top">Aller au contenu</a>
 <div class="grain"></div>
@@ -47,15 +66,25 @@
 </nav>
 
 <main id="top" tabindex="-1">
-  <section class="phero merci"><div class="wrap">
+  <script type="application/json" id="actus-config">{"types": [{"key": "intervention", "label": "Intervention", "color": "#2E2BF5"}, {"key": "publication", "label": "Publication", "color": "#7B4DFF"}, {"key": "media", "label": "Média", "color": "#16140F"}, {"key": "decision", "label": "Décision", "color": "#675F50"}], "empty": "Aucune actualité pour le moment.", "error": "Les actualités sont momentanément indisponibles."}</script>
+  <section class="phero"><div class="wrap">
     <nav class="crumb rv" aria-label="Fil d'ariane">
-      <a href="/">Accueil</a><span class="sep" aria-hidden="true">/</span><a href="/contact/">Contact</a><span class="sep" aria-hidden="true">/</span><span class="cur">Message envoyé</span>
+      <a href="/">Accueil</a><span class="sep" aria-hidden="true">/</span><span class="cur">Le fil</span>
     </nav>
-    <h1 class="rv">Message bien <span class="ac grad">envoyé</span>.</h1>
-    <p class="promise rv" style="transition-delay:.08s">Merci, votre message est arrivé. Je vous réponds dans les meilleurs délais — généralement sous 48 heures ouvrées.</p>
-    <div class="mrow rv" style="transition-delay:.16s">
-      <a class="cta solid" href="/"><span>Retour à l'accueil</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
-      <a class="tlink" href="/#expertises">Voir les expertises</a>
+    <h1 class="rv">Actualités</h1>
+    <p class="promise rv" style="transition-delay:.08s">Interventions, publications, apparitions médias et décisions marquantes du cabinet.</p>
+  </div></section>
+
+  <section class="sec xsec"><div class="wrap">
+    <div class="actus-filters rv" role="group" aria-label="Filtrer par type">
+      <button type="button" class="actus-f is-on" data-filter="all" aria-pressed="true">Tout</button>
+      <button type="button" class="actus-f" data-filter="intervention" aria-pressed="false">Intervention</button>
+      <button type="button" class="actus-f" data-filter="publication" aria-pressed="false">Publication</button>
+      <button type="button" class="actus-f" data-filter="media" aria-pressed="false">Média</button>
+      <button type="button" class="actus-f" data-filter="decision" aria-pressed="false">Décision</button>
+    </div>
+    <div class="actus-list rv" id="actus-page" data-actus="page" aria-live="polite">
+      <p class="actus-state">Chargement des actualités…</p>
     </div>
   </div></section>
 </main>

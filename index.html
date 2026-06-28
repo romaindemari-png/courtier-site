@@ -140,6 +140,17 @@
     </div>
   </div></section>
 
+  <section class="sec actus" id="actualites"><div class="wrap">
+    <script type="application/json" id="actus-config">{"types": [{"key": "intervention", "label": "Intervention", "color": "#2E2BF5"}, {"key": "publication", "label": "Publication", "color": "#7B4DFF"}, {"key": "media", "label": "Média", "color": "#16140F"}, {"key": "decision", "label": "Décision", "color": "#675F50"}], "empty": "Aucune actualité pour le moment.", "error": "Les actualités sont momentanément indisponibles."}</script>
+    <div class="actus-head-row rv">
+      <div><span class="ey">Le fil</span><h2>Actualités</h2></div>
+      <a class="tlink" href="/actualites/">Toutes les actualités</a>
+    </div>
+    <div class="actus-list rv" id="actus-home" data-actus="home" aria-live="polite">
+      <p class="actus-state">Chargement des actualités…</p>
+    </div>
+  </div></section>
+
   <section class="manif"><div class="wrap">
     <blockquote class="rv">La conformité ne se décrète pas, elle se <span class="ac grad">pilote</span>.</blockquote>
     <p class="sup rv" style="transition-delay:.1s">Entre votre système d'information et le cadre juridique, j'assure le copilotage — sans jargon, sans zone grise.</p>
@@ -170,4 +181,5 @@
 <script src="/assets/js/vendor/gsap.min.js"></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="/assets/js/main.js"></script>
+<script src="/assets/js/actus.js"></script>
 </body></html>

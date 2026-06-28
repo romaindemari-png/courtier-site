@@ -44,6 +44,17 @@
     </div>
   </div></section>
 
+  <section class="sec actus" id="actualites"><div class="wrap">
+    {{ACTUS_CONFIG}}
+    <div class="actus-head-row rv">
+      <div><span class="ey">{{ACTUS_HOME_EYEBROW}}</span><h2>{{ACTUS_HOME_TITLE}}</h2></div>
+      <a class="tlink" href="/actualites/">{{ACTUS_SEE_ALL}}</a>
+    </div>
+    <div class="actus-list rv" id="actus-home" data-actus="home" aria-live="polite">
+      <p class="actus-state">{{ACTUS_LOADING}}</p>
+    </div>
+  </div></section>
+
   <section class="manif"><div class="wrap">
     <blockquote class="rv">{{MANIFESTO_QUOTE}}</blockquote>
     <p class="sup rv" style="transition-delay:.1s">{{MANIFESTO_SUP}}</p>

@@ -38,6 +38,7 @@ expt_t    = rd("_src/template/expertise.html")
 contact_t = rd("_src/template/contact.html")
 merci_t   = rd("_src/template/merci.html")
 legal_t   = rd("_src/template/mentions-legales.html")
+actus_t   = rd("_src/template/actualites.html")
 
 # ─────────────────────────── Fragments réutilisables ───────────────────────────
 def picture(img, eager=False):
@@ -185,6 +186,11 @@ def home_body():
         "{{APPROCHE_TITLE}}": esc(D.APPROCHE["title"]),
         "{{APPROCHE_ITEMS}}": "\n".join(items),
         "{{APPROCHE_IMG}}": picture(D.APPROCHE_IMG),
+        "{{ACTUS_CONFIG}}": actus_config(),
+        "{{ACTUS_HOME_EYEBROW}}": esc(D.ACTUS["home_eyebrow"]),
+        "{{ACTUS_HOME_TITLE}}": esc(D.ACTUS["home_title"]),
+        "{{ACTUS_SEE_ALL}}": esc(D.ACTUS["see_all"]),
+        "{{ACTUS_LOADING}}": esc(D.ACTUS["loading"]),
         "{{MANIFESTO_QUOTE}}": D.MANIFESTO["quote_html"],
         "{{MANIFESTO_SUP}}": esc(D.MANIFESTO["sup"]),
         "{{CONTACT_EYEBROW}}": esc(D.CONTACT_SECTION["eyebrow"]),
@@ -222,6 +228,27 @@ def legal_body():  # valeurs connues injectées ; le reste = [À COMPLÉTER] dan
         "{{INTRO}}": esc(D.LEGAL_PAGE["intro"]),
         "{{BRAND}}": esc(D.BRAND),
         "{{LOCATION}}": esc(D.LOCATION),
+    })
+
+# ─────────────────────────── Module Actualités (lecture seule) ──────────────────
+def actus_config():  # config (libellés/couleurs/états) en JSON non exécutable → lu par actus.js
+    cfg = {"types": D.ACTUS["types"], "empty": D.ACTUS["empty"], "error": D.ACTUS["error"]}
+    return '<script type="application/json" id="actus-config">%s</script>' % json.dumps(cfg, ensure_ascii=False)
+
+def actus_filters():
+    return "\n".join(
+        '      <button type="button" class="actus-f" data-filter="%s" aria-pressed="false">%s</button>'
+        % (t["key"], esc(t["label"])) for t in D.ACTUS["types"])
+
+def actualites_body():
+    return render(actus_t, {
+        "{{ACTUS_CONFIG}}": actus_config(),
+        "{{ACTUS_PAGE_EYEBROW}}": esc(D.ACTUS["page_eyebrow"]),
+        "{{ACTUS_PAGE_H1}}": esc(D.ACTUS["page_h1"]),
+        "{{ACTUS_PAGE_INTRO}}": esc(D.ACTUS["page_intro"]),
+        "{{ACTUS_FILTER_ALL}}": esc(D.ACTUS["filter_all"]),
+        "{{ACTUS_FILTERS}}": actus_filters(),
+        "{{ACTUS_LOADING}}": esc(D.ACTUS["loading"]),
     })
 
 # ─────────────────────────── Corps expertise ───────────────────────────────────
@@ -269,10 +296,14 @@ def build():
     # Mentions légales — accessible via le footer ; noindex tant que des [À COMPLÉTER] subsistent
     wr("mentions-legales/index.html",
        page(D.LEGAL_PAGE["title"], D.LEGAL_PAGE["desc"], D.SITE + "/mentions-legales/", "", legal_body(), "/", robots="noindex,follow"))
+    # Actualités (lecture seule — contenu injecté par actus.js depuis la Function)
+    actus_crumbs = breadcrumb_jsonld([("Accueil", D.SITE + "/"), ("Actualités", D.SITE + "/actualites/")])
+    wr("actualites/index.html",
+       page(D.ACTUS["page_title"], D.ACTUS["page_desc"], D.SITE + "/actualites/", actus_crumbs, actualites_body(), "/"))
 
     urls = ([(D.SITE + "/", "1.0")]
             + [("%s/expertises/%s/" % (D.SITE, d["slug"]), "0.8") for d in D.DOMAINS]
-            + [(D.SITE + "/contact/", "0.7")])
+            + [(D.SITE + "/contact/", "0.7"), (D.SITE + "/actualites/", "0.6")])
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, prio in urls:
@@ -287,6 +318,7 @@ def build():
     for d in D.DOMAINS:
         print("  - expertises/%s/index.html" % d["slug"])
     print("  - contact/index.html, merci/index.html, mentions-legales/index.html")
+    print("  - actualites/index.html")
     print("  - sitemap.xml, robots.txt")
 
 if __name__ == "__main__":

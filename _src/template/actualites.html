@@ -1,0 +1,20 @@
+<main id="top" tabindex="-1">
+  {{ACTUS_CONFIG}}
+  <section class="phero"><div class="wrap">
+    <nav class="crumb rv" aria-label="Fil d'ariane">
+      <a href="/">Accueil</a><span class="sep" aria-hidden="true">/</span><span class="cur">{{ACTUS_PAGE_EYEBROW}}</span>
+    </nav>
+    <h1 class="rv">{{ACTUS_PAGE_H1}}</h1>
+    <p class="promise rv" style="transition-delay:.08s">{{ACTUS_PAGE_INTRO}}</p>
+  </div></section>
+
+  <section class="sec xsec"><div class="wrap">
+    <div class="actus-filters rv" role="group" aria-label="Filtrer par type">
+      <button type="button" class="actus-f is-on" data-filter="all" aria-pressed="true">{{ACTUS_FILTER_ALL}}</button>
+{{ACTUS_FILTERS}}
+    </div>
+    <div class="actus-list rv" id="actus-page" data-actus="page" aria-live="polite">
+      <p class="actus-state">{{ACTUS_LOADING}}</p>
+    </div>
+  </div></section>
+</main>
