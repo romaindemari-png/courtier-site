@@ -75,19 +75,19 @@
       <a class="lnk" href="#cabinet">Le cabinet</a><a class="lnk" href="#expertises">Expertises</a><a class="lnk" href="#approche">L'approche</a>
       <a class="cta" href="/contact/"><span>Prendre rendez-vous</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
     </span>
-    <button class="burger" aria-label="Ouvrir le menu" aria-controls="mm" aria-expanded="false" onclick="document.getElementById('mm').classList.add('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 8h18M3 16h18"/></svg></button>
+    <button class="burger" aria-label="Ouvrir le menu" aria-controls="mm" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 8h18M3 16h18"/></svg></button>
   </nav>
 </div></header>
 
 <nav class="mm" id="mm" aria-label="Menu" aria-hidden="true">
-  <button class="x" aria-label="Fermer le menu" onclick="document.getElementById('mm').classList.remove('open')"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M6 6l14 14M20 6L6 20"/></svg></button>
-  <a href="#cabinet" onclick="document.getElementById('mm').classList.remove('open')">Le cabinet</a>
-  <a href="#expertises" onclick="document.getElementById('mm').classList.remove('open')">Expertises</a>
-  <a href="#approche" onclick="document.getElementById('mm').classList.remove('open')">L'approche</a>
-  <a href="/contact/" onclick="document.getElementById('mm').classList.remove('open')">Contact</a>
+  <button class="x" aria-label="Fermer le menu"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M6 6l14 14M20 6L6 20"/></svg></button>
+  <a href="#cabinet">Le cabinet</a>
+  <a href="#expertises">Expertises</a>
+  <a href="#approche">L'approche</a>
+  <a href="/contact/">Contact</a>
 </nav>
 
-<script>window.HERO={words:["forme", "prix", "frontière", "contour"],images:{"forme": "/assets/img/forme.webp", "prix": "/assets/img/prix.webp", "frontière": "/assets/img/approche-gratte-ciels.webp", "contour": "/assets/img/contour.webp"}};</script>
+<script type="application/json" id="hero-data">{"words": ["forme", "prix", "frontière", "contour"], "images": {"forme": "/assets/img/forme.webp", "prix": "/assets/img/prix.webp", "frontière": "/assets/img/approche-gratte-ciels.webp", "contour": "/assets/img/contour.webp"}}</script>
 <main id="top" tabindex="-1">
   <section class="hero"><div class="wrap">
     <div class="h-right">
@@ -103,7 +103,7 @@
 
   <section class="dark sec cab" id="cabinet"><div class="wrap">
     <div class="grid">
-      <div class="pf rv"><picture><source srcset="/assets/img/portrait-nicolas-courtier.webp" type="image/webp"><img src="/assets/img/portrait-nicolas-courtier.jpg" alt="Nicolas Courtier, avocat au barreau de Marseille" width="803" height="1000" loading="lazy"></picture></div>
+      <div class="pf rv"><picture><source srcset="/assets/img/portrait-nicolas-courtier.webp" type="image/webp"><img src="/assets/img/portrait-nicolas-courtier.jpg" alt="Nicolas Courtier, avocat au barreau de Marseille" width="803" height="1000" fetchpriority="high"></picture></div>
       <div class="rv" style="transition-delay:.1s">
         <span class="ey">Le cabinet</span>
         <h2>Défendre l'invisible, depuis <span class="ac">1991</span>.</h2>

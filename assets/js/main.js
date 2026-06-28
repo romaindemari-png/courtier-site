@@ -2,7 +2,9 @@
    Chaque bloc est défensif : il ne s'exécute que si ses éléments existent,
    pour qu'un seul fichier serve l'accueil ET les pages d'expertise. */
 (function () {
-  var HERO = window.HERO || {};
+  // Données hero lues depuis un bloc JSON non exécutable (compatible CSP sans 'unsafe-inline').
+  var HERO = {};
+  try { var hd = document.getElementById('hero-data'); if (hd) HERO = JSON.parse(hd.textContent); } catch (e) {}
   var P = HERO.images || {};
   var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -43,6 +45,13 @@
   /* ---------- Menu mobile — accessibilité (toutes situations) ---------- */
   var mmNav = document.getElementById('mm'), burger = document.querySelector('.burger');
   if (mmNav && burger) {
+    // Ouverture / fermeture (remplace les onclick inline → compatible CSP).
+    burger.addEventListener('click', function () { mmNav.classList.add('open'); });
+    var xBtn = mmNav.querySelector('.x');
+    if (xBtn) xBtn.addEventListener('click', function () { mmNav.classList.remove('open'); });
+    mmNav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { mmNav.classList.remove('open'); });
+    });
     var wasOpen = false;
     function syncMenu() {
       var open = mmNav.classList.contains('open');

@@ -40,10 +40,12 @@ merci_t   = rd("_src/template/merci.html")
 legal_t   = rd("_src/template/mentions-legales.html")
 
 # ─────────────────────────── Fragments réutilisables ───────────────────────────
-def picture(img):
+def picture(img, eager=False):
+    # eager=True pour l'image prioritaire : pas de lazy + fetchpriority="high" (le reste reste lazy).
+    prio = ' fetchpriority="high"' if eager else ' loading="lazy"'
     return ('<picture><source srcset="%s" type="image/webp">'
-            '<img src="%s" alt="%s" width="%d" height="%d" loading="lazy"></picture>'
-            % (img["webp"], img["jpg"], att(img["alt"]), img["w"], img["h"]))
+            '<img src="%s" alt="%s" width="%d" height="%d"%s></picture>'
+            % (img["webp"], img["jpg"], att(img["alt"]), img["w"], img["h"], prio))
 
 def tokens_css():
     c = D.COLORS
@@ -65,8 +67,7 @@ def _nav(prefix, items, cls=""):
 def chrome(prefix):
     mm_items = D.NAV + [D.NAV_CONTACT]
     mm = "\n  ".join(
-        '<a href="%s" onclick="document.getElementById(\'mm\').classList.remove(\'open\')">%s</a>'
-        % (_href(prefix, n["href"]), esc(n["label"])) for n in mm_items)
+        '<a href="%s">%s</a>' % (_href(prefix, n["href"]), esc(n["label"])) for n in mm_items)
     h = render(header, {
         "{{HOME}}": prefix, "{{BRAND}}": esc(D.BRAND), "{{MONOGRAM}}": esc(D.MONOGRAM),
         "{{NAV_LINKS}}": _nav(prefix, D.NAV, "lnk"),
@@ -148,8 +149,8 @@ def meta_html():  # coordonnées (accueil + page contact) — valeurs brutes (pe
                      for k, v in D.CONTACT_SECTION["meta"])
 
 def home_body():
-    config = "<script>window.HERO={words:%s,images:%s};</script>" % (
-        json.dumps(D.HERO_WORDS, ensure_ascii=False), json.dumps(D.HERO_IMAGES, ensure_ascii=False))
+    config = '<script type="application/json" id="hero-data">%s</script>' % json.dumps(
+        {"words": D.HERO_WORDS, "images": D.HERO_IMAGES}, ensure_ascii=False)
     stats = "\n".join('          <div><div class="n serif">%s</div><div class="k">%s</div></div>'
                       % (esc(n), esc(k)) for n, k in D.CABINET["stats"])
     cards = []
@@ -172,7 +173,7 @@ def home_body():
         "{{HERO_TITLE_AFTER_PREFIX}}": esc(D.HERO["title_after_prefix"]),
         "{{HERO_FIRST_WORD}}": esc(D.HERO["first_word"]),
         "{{HERO_TITLE_AFTER_SUFFIX}}": esc(D.HERO["title_after_suffix"]),
-        "{{PORTRAIT}}": picture(D.PORTRAIT),
+        "{{PORTRAIT}}": picture(D.PORTRAIT, eager=True),
         "{{CABINET_EYEBROW}}": esc(D.CABINET["eyebrow"]),
         "{{CABINET_TITLE}}": D.CABINET["title_html"],
         "{{CABINET_BODY}}": esc(D.CABINET["body"]),
