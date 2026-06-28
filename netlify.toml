@@ -56,3 +56,13 @@
   for = "/assets/js/main.js"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/js/admin.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/js/actus.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

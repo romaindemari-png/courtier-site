@@ -66,9 +66,11 @@ export const handler = async (event, context) => {
     return { statusCode: 500, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ error: "Écriture impossible." }) };
   }
 
+  // On renvoie le tableau nettoyé exact qui vient d'être écrit : le client met sa liste à
+  // jour avec ÇA (source de vérité = écriture confirmée), sans dépendre d'une relecture eventual.
   return {
     statusCode: 200,
     headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-    body: JSON.stringify({ ok: true, count: value.length }),
+    body: JSON.stringify({ ok: true, count: value.length, actus: value }),
   };
 };

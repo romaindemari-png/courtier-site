@@ -59,6 +59,8 @@
   }
 
   // ---------- chargement ----------
+  // Unique fetch légitime : le chargement INITIAL de la page (au login). Après une action,
+  // la liste vient de la réponse de save-actus — jamais d'un re-fetch (eventual périmé).
   function loadActus() {
     state(CFG.loading || 'Chargement…');
     return authed('/.netlify/functions/actus-admin').then(function (r) {
@@ -202,7 +204,9 @@
       if (x.status === 401) { I.logout(); throw new Error('401'); }
       if (!x.ok) throw new Error((x.j && x.j.error) || ('HTTP ' + x.status));
       resetForm(); msg(okMsg || 'Enregistré.', false);
-      return loadActus();             // re-synchronise depuis le serveur (source de vérité)
+      // Source de vérité après une action = le tableau confirmé renvoyé par save-actus.
+      // AUCUN re-fetch derrière : l'eventual encore périmé écraserait la liste correcte.
+      if (x.j && Array.isArray(x.j.actus)) { actus = x.j.actus; renderList(); }
     }).catch(function (err) {
       msg((CFG.save_error || 'Échec') + ' ' + (err && err.message ? '(' + err.message + ')' : ''), true);
     }).then(function () { setBusy(false); });
