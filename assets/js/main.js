@@ -133,6 +133,16 @@
       gsap.fromTo(im, { yPercent: -5 }, { yPercent: 5, ease: 'none',
         scrollTrigger: { trigger: boxEl, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
+    // Compteur des stats (35 / 3 / 1) à l'entrée en vue
+    gsap.utils.toArray('.cab .stats .n').forEach(function (el) {
+      var end = parseInt(el.textContent, 10);
+      if (isNaN(end)) return;
+      var o = { v: 0 };
+      el.textContent = '0';
+      gsap.to(o, { v: end, duration: 1.2, ease: 'power3.out', snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        onUpdate: function () { el.textContent = Math.round(o.v); } });
+    });
   } else if (!reduce) {
     // Fallback (libs absentes / iOS récalcitrant) : reveals via IntersectionObserver, scroll natif.
     var io = new IntersectionObserver(function (es) {
