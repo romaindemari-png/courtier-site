@@ -62,6 +62,7 @@ _src/
   template/expertise.html  ← gabarit d'une page d'expertise
 build.py                   ← générateur (gabarit)
 assets/                    ← css/ (main.css + tokens.css généré) js/ fonts/ img/ favicon.svg
+assets/js/vendor/          ← Lenis + GSAP + ScrollTrigger (vendorisés, pas de CDN), chargés avant main.js
 index.html, expertises/*/  ← SORTIE GÉNÉRÉE (ne pas éditer)
 sitemap.xml, robots.txt    ← SORTIE GÉNÉRÉE
 ```
