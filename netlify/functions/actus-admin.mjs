@@ -22,7 +22,10 @@ export const handler = async (event, context) => {
   let actus = [];
   try {
     const store = getStore("content");
-    const data = await store.get("actus", { type: "json" });
+    // Lecture FORTE : voir immédiatement les écritures de l'admin (l'eventual = cache edge → liste périmée).
+    let data;
+    try { data = await store.get("actus", { type: "json", consistency: "strong" }); }
+    catch (se) { data = await store.get("actus", { type: "json" }); } // repli si strong indisponible
     if (Array.isArray(data)) actus = data;
   } catch (e) {
     actus = []; // clé absente / store vide

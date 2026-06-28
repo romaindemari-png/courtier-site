@@ -61,7 +61,7 @@
   // ---------- chargement ----------
   function loadActus() {
     state(CFG.loading || 'Chargement…');
-    authed('/.netlify/functions/actus-admin').then(function (r) {
+    return authed('/.netlify/functions/actus-admin').then(function (r) {
       if (r.status === 401) { I.logout(); throw new Error('401'); }
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
